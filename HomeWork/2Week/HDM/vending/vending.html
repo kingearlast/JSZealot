@@ -1,0 +1,416 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<style>
+			#wrap{
+				width: 410px;
+				border: black 1px solid;
+				margin: auto;
+			}
+			.title1{
+				text-align: center;
+			}
+			.drink{
+				width: 100%;
+				text-align: center;
+				font-weight: bold;
+				margin: auto;
+			}
+			.drink table{
+				margin: auto;
+				border: black 1px solid;
+			}
+			.drink table td{
+				width: 70px;
+				border: black 1px solid;
+			}
+			.drinkImg{
+				display: block;
+				height: 35px;
+				margin: 2.5px;
+				padding: 1px;
+			}
+			.price{
+				font-size: 12px;
+				font-style: italic;
+			}
+			button{
+				cursor: pointer;
+			}
+			.drinkBtn{
+				display:block;  
+				width: 60px;
+				margin: auto;
+				padding:3px; 
+				border:1px solid #efefef; 
+				border-radius:8px; 
+				background:black; 
+				font-size:12px; 
+				color:#C18B8D; 
+			}
+			.ad{
+				width: 250px;
+				height: 150px;
+				border: black 1px inset;
+				background: #68774A;
+				margin: auto;
+				float: left;
+			}
+			.ad > img{
+				width: 95%;
+				height: 95%;
+				opacity: 1;
+				float: none;
+				position:relative;
+				top:5px;
+			}
+			.moneyModule{
+				width: 150px;
+				height: 150px;
+				border: black 1px inset;
+				background: #68774A;
+				margin: auto;
+				float: left;
+			}
+			.take{
+				width: 250px;
+				height: 150px;
+				border: black 1px inset;
+				background: #68774A;
+				float: left;
+			}
+			.returnMoney{
+				width: 150px;
+				height: 150px;
+				border: black 1px inset;
+				background-color: #68774A;
+				float: left;
+			}
+			.dropDrinkZone { 
+				width: 85%; 
+				height: 30%;
+				outline-color: #000000;
+				outline-width: 3px;
+				outline-style:dashed;
+				padding:3px;
+				background-color: #444444;
+				opacity: 0.3;
+				margin: auto;
+				position: relative;
+				top: 80px;
+				cursor: pointer;
+			}
+			.dropDrinkZone:hover{
+				opacity: 0.8;
+				background-color: #FFFFFF;
+			}
+			.dropDrinkZone > img{
+				position: relative;
+				margin: auto;
+			}
+			#displayArea{
+				margin:auto;
+				width:90%;
+				border:2px dashed red;
+				outline:3px solid black;
+				outline-offset:3px;
+				text-shadow: 2px 2px 2px red;
+				color: red;
+			}
+			.moneyModule button{
+				border-radius: 10px;
+				margin: auto;
+				position: relative;
+				top:20px;
+				text-align: center;
+				margin: 10px 5px 10px 5px;
+			}
+			#returnMoneyBox{
+				position:relative;
+				top:70px;
+				left: 70px;
+				width: 50px;
+				height: 50px;
+				background:#AAAAAA; 
+				outline-style: solid;
+				outline-color: black;
+				outline-offset: 2px;
+				border-style: solid;
+				border-width: 3px;
+				border-top-style: dashed;
+				border-color: #FFFFFF;
+			}
+		</style>
+		<script type="text/javascript" src="./lib/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="./lib/jquery.preload.js"></script>
+	</head>
+	<body>
+	<div id="wrap">
+		<div class="title1">
+			<h2>자 판 기</h2>	
+		</div>
+		<div class="drink">
+			<table>
+				<tr>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+					<td align="center">
+						<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+						<button class="drinkBtn"><span>O 선택</span></button>
+					</td>
+				</tr>
+			</table>	
+		</div>
+		<div class="ad" align="center" >
+			<img src="./image/ad/포카리.jpg" alt="ad"/>
+		</div>
+		<div class="moneyModule">
+			<div id="displayArea"><span>돈을 넣어주세요</span></div>
+			<button id="returnCoinBtn">반환기</button><button id="inputCoinBtn">돈투입</button>
+		</div>
+		<div class="take">
+			<div class="dropDrinkZone"></div>			
+		</div>
+		<div class="returnMoney">
+			<div id="returnMoneyBox"></div>			
+		</div>
+	</div>
+	</body>
+</html>
+<script>
+	$(document).ready(function(){
+		audioModule.playSound('vending');
+		initDrinks();
+		initBindBtns();
+		drawVending();
+		drawAd();
+	});
+	
+	function initBindBtns(){
+		inputCoinBtnBind();
+		drinkSelectBtnBind();
+		returnCoinBtnBind();
+		returnMoneyBoxBind();
+		takeDrinkBind();
+	}
+	
+	function returnMoneyBoxBind(){
+		$('#returnMoneyBox').click(function(){
+			$(this).css('background-image', "url('none')");
+		});
+	}
+	
+	function takeDrinkBind(){
+		$('.dropDrinkZone').click(function(){
+			if ( $(this).find('img').length > 0 ){
+				$(this).find('img').last().remove();
+				audioModule.playSound('drink');	
+			}
+		});
+	}
+	
+	function returnCoinBtnBind(){
+		$('#returnCoinBtn').click(function(){
+			// 동전반환.. sound 또는 그래픽 처리
+			if ( totalMoney > 0 ){
+				audioModule.playSound('coin');
+				// background-image: url('./image/coin/coin.jpg');
+				$('#returnMoneyBox').css('background-image', "url('./image/coin/coin.jpg')");
+			}
+			totalMoney = 0;
+			drawVending(totalMoney);
+			changeMoneyDisplay(totalMoney);
+		});
+	}
+	
+	function drinkSelectBtnBind(){
+		
+		$('.drinkBtn').click(function(){
+			var drinkValue = $(this).val();
+			$.each(drinks, function(i, drink){
+				if ( drinkValue == drink.name && drink.quantity > 0){
+					if( totalMoney >= drink.price ){
+						totalMoney -= drink.price;
+						drink.quantity--;
+						drawVending(totalMoney);
+						drawDropDrink();
+						changeMoneyDisplay(totalMoney);
+						audioModule.playSound('btn1');
+						console.log('drinkCount: ' + drink.quantity );
+						return;
+					}else{
+						console.log('돈이 부족함');
+						return;
+					}
+				}
+			});
+		});
+		
+	}
+		
+	var totalMoney = 0;
+		
+	function inputCoinBtnBind(){
+		$('#inputCoinBtn').click(function(){
+			var inputCoin = prompt('input your coin');
+			if ( !isNaN(inputCoin) && parseInt(inputCoin) > 0 ){ // 긍정적 처리
+				audioModule.playSound('input');
+				totalMoney += parseInt(inputCoin);
+				drawVending(totalMoney);
+				changeMoneyDisplay(totalMoney);
+			}else if( parseInt(inputCoin) < 0 ){
+				changeMoneyDisplay('양수를 넣어주세요');
+			}else {
+				changeMoneyDisplay('숫자를 넣어주세요');
+			}
+		});
+	}
+	
+	function changeMoneyDisplay(message){
+		$('#displayArea span').html(message);
+	}
+	
+	// 음료 배열과 채우기
+	var drinks = [];
+	
+	function initDrinks(){
+		var drinkNames = ['사이다', '환타', '콜라', '게토레이', '커피', '참이슬', '처음처럼', '카스', '하이트', '맥스'];
+		var prices = 	  [800, 	800, 	800, 	800, 	  300,     1100,	1300, 	  1300,   1500,    1500];
+		var quantity = [10,10,10,10,10,10,10,10,10,10];
+		for ( var i = 0; i < 10; i ++ ){
+			var drink = new Drink(drinkNames[i], quantity[i], prices[i]);
+			drinks.push(drink);
+		}
+	}
+	
+	// 음료 객체
+	function Drink(name, quantity, price){
+		this.name = name;
+		this.quantity = quantity;
+		this.price = price;
+		this.src = './image/drink/' + name + '.jpg';
+	}
+	
+	function drawVending(totalMoney){
+		
+		$.each(drinks, function(i, drink){
+			var drinkBtn = $($('.drinkBtn')[i]);
+			var drinkImg = $($('.drinkImg')[i]); 
+			var priceElement = $($('.price')[i]); 
+			
+			if ( totalMoney && totalMoney >= drink.price){
+				drinkBtn.css('color', 'red');
+			}else {
+				drinkBtn.css('color', '#C18B8D');
+			}
+			if ( drink.quantity < 1 ){
+				drinkBtn.html('X 없음').css('color', 'red');
+			}
+			drinkBtn.val(drink.name);
+			drinkImg.attr('src', drink.src);
+			priceElement.html(drink.price +' 원');	
+		});
+	}
+	
+	
+	var audioModule = {
+		// html5의 sound file format는 ogg, wav, mp3 등을 지원한다.
+		coin : './sound/coin.mp3',
+		drink : './sound/drink.mp3',
+		vending : './sound/vending.mp3',
+		btn1 : './sound/btn1.mp3',
+		input : './sound/input.mp3',
+		appendAudioElement : function(){
+			var audioTag = '<audio src="" />';
+			$('#wrap').append(audioTag);
+		},
+		
+		playSound : function(srcName){
+			this.appendAudioElement();
+			var src = this[srcName];
+			var audio = $('audio').attr('src', src).get(0);
+			audio.play();
+		}
+	}
+	
+	function drawAd(){
+		var imgSrcList = ['./image/ad/코카콜라.jpg', './image/ad/칠성사이다.jpg', './image/ad/포카리.jpg'];
+		var i = 0;
+		setInterval(function(){
+			var index = i % 3 ;
+			$('.ad > img').attr('src', imgSrcList[index]);
+			i++;	
+		}, 2000);
+		
+	}
+	
+	function createDropDrink(){
+		var drinkSrc = './image/drink/drink.jpg';
+		var dropDrink = $('<img/>').attr({src: drinkSrc, alt: 'dropDrink'});
+		return dropDrink;
+	}
+	
+	function drawDropDrink(){
+		var dropDrinkCount = $('.dropDrinkZone >img').length;
+		if ( dropDrinkCount < 4 ){
+			var dropDrink = createDropDrink();
+			$('.dropDrinkZone').append(dropDrink);
+			dropDrink.animate({
+		    //opacity: 0.5,
+		    top: 20,
+		    //height: 'toggle'
+		  }, 2000, function() {
+		    // Animation complete.
+		  });
+		} 
+		
+	}
+	
+	(function(){
+		var imgSrcList = ['./image/ad/코카콜라.jpg', './image/ad/칠성사이다.jpg', './image/ad/포카리.jpg'];
+		$.preload(imgSrcList);
+		
+		var drinkSrc = './image/drink/drink.jpg';
+		$.preload(drinkSrc);
+	})();
+	
+</script>

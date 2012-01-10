@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="lib/blackbirdjs/blackbird.js"></script>
+		<link type="text/css" rel="stylesheet" href="lib/blackbirdjs/blackbird.css" />
+		<title>JavaScript</title>
+	</head>
+	<body>
+		<div>
+			<p>
+				1원 단위 입력하시면 그 돈은 제가 먹어요잉~ <br>
+				짤 없습니다잉~ <br>
+				이것도 초기화 없습니다잉 그냥 F5누르는 겁니다잉 ~
+			</p>
+		</div>
+		<div id="userId">
+			<form>
+				<table id="vendingUi" border="1" bordercolor="black" >
+					<tr>
+						<td colspan="3" id="item0_name">  커카컬라 	</td>
+						<td colspan="3" id="item1_name">  싸이다  	</td> 
+						<td colspan="3" id="item2_name">  뽠타   	</td>
+					</tr>
+					<tr>
+						<td id="item0_price">3000원</td>
+						<td id="item0_count">10</td>
+						<td><input type="button" value="구매" onclick="purchase_fun('item0');"></td>
+						<td id="item1_price">2500원</td>
+						<td id="item1_count">10</td>
+						<td><input type="button" value="구매" onclick="purchase_fun('item1');"></td>
+						<td id="item2_price">2000원</td>
+						<td id="item2_count">10</td>
+						<td><input type="button" value="구매" onclick="purchase_fun('item2');"></td>
+					</tr>
+					<tr>
+						<td colspan="3" id="item3_name">  콜드6 	</td>
+						<td colspan="3" id="item4_name">  맛잇졍   	</td> 
+						<td colspan="3" id="item5_name">  데헷 	</td>
+					</tr>
+					<tr>
+						<td id="item3_price">1500원</td>
+						<td id="item3_count">10</td>
+						<td><input type="button" value="구매" onclick="purchase_fun('item3');"></td>
+						<td id="item4_price">1000원</td>
+						<td id="item4_count">10</td>
+						<td><input type="button" value="구매" onclick="purchase_fun('item4');"></td>
+						<td id="item5_price">500원</td>
+						<td id="item5_count">10</td>
+						<td><input type="button" value="구매" onclick="purchase_fun('item5');"></td>
+					</tr>				
+				</table>
+				<br>
+				<table id="purchaseUi" border="1" bordercolor="black" >
+					<tr>
+						<td>돈 입력</td>
+						<td ><input type="text" id="inputCoinBox" /></td>
+						<td><input type="button" value="확인" onclick="input_money()";></td>					
+					</tr>
+					<tr>
+						<td>잔돈</td>
+						<td colspan="2" id="sumCoinBox">0</td>
+					</tr>
+				</table>
+				<br>
+				<table id="changeUi" border="1" bordercolor="black" >
+					<tr>
+						<td colspan="5">잔돈 받기</td>
+						<td colspan="5"><input type="button" value="내놧!" onclick="cal_changeCoin();"></td>
+					</tr>
+					<tr>
+						<td>5000원</td>
+						<td id="won5000">0</td>
+						<td>1000원</td>
+						<td id="won1000">0</td>
+						<td>500원</td>
+						<td id="won500">0</td>
+						<td>100원</td>
+						<td id="won100">0</td>
+						<td>10원</td>
+						<td id="won10">0</td>
+					</tr>
+				</table>
+				<br>
+			</form>
+			<div id="purchaseList" style="PADDING-RIGHT: 15px; PADDING-LEFT: 15px; FONT-SIZE: 13pt; LEFT: 100px; PADDING-BOTTOM: 15px; WIDTH: 400px; COLOR: blue; PADDING-TOP: 15px;  TOP: 500px">
+				<br>
+			</div>
+		</div>
+		<div id="managerPart">
+			<span>관리자 부분 (다른 페이지에 만드려다가 나를 또 괴롭힐꺼 같아서 그냥 합침 ㅠ)</span>
+			<form>
+				<table id="managerUi" border="1" bordercolor="black" >
+					<tr>
+						<td rowspan="3">물품1</td>
+						<td>변경이름</td>
+						<td><input type="text" id="item0_chName" value=""></td>
+						<td rowspan="3"><input type="button" value="확인" onclick="set_ItemList(0);"></td>
+					</tr>
+					<tr>
+						<td>변경가격</td>
+						<td><input type="text" id="item0_chPrice" value=""></td>
+					</tr>
+					<tr>
+						<td>변경수량</td>
+						<td><input type="text" id="item0_chCount" value=""></td>
+					</tr>
+					<tr>
+						<td rowspan="3">물품2</td>
+						<td>변경이름</td>
+						<td><input type="text" id="item1_chName" value=""></td>
+						<td rowspan="3"><input type="button" value="확인" onclick="set_ItemList(1);"></td>
+					</tr>
+					<tr>
+						<td>변경가격</td>
+						<td><input type="text" id="item1_chPrice" value=""></td>
+					</tr>
+					<tr>
+						<td>변경수량</td>
+						<td><input type="text" id="item1_chCount" value=""></td>
+					</tr>
+					<tr>
+						<td rowspan="3">물품3</td>
+						<td>변경이름</td>
+						<td><input type="text" id="item2_chName" value=""></td>
+						<td rowspan="3"><input type="button" value="확인" onclick="set_ItemList(2);"></td>
+					</tr>
+					<tr>
+						<td>변경가격</td>
+						<td><input type="text" id="item2_chPrice" value=""></td>
+					</tr>
+					<tr>
+						<td>변경수량</td>
+						<td><input type="text" id="item2_chCount" value=""></td>
+					</tr>
+					<tr>
+						<td rowspan="3">물품4</td>
+						<td>변경이름</td>
+						<td><input type="text" id="item3_chName" value=""></td>
+						<td rowspan="3"><input type="button" value="확인" onclick="set_ItemList(3);"></td>
+					</tr>
+					<tr>
+						<td>변경가격</td>
+						<td><input type="text" id="item3_chPrice" value=""></td>
+					</tr>
+					<tr>
+						<td>변경수량</td>
+						<td><input type="text" id="item3_chCount" value=""></td>
+					</tr>
+					<tr>
+						<td rowspan="3">물품5</td>
+						<td>변경이름</td>
+						<td><input type="text" id="item4_chName" value=""></td>
+						<td rowspan="3"><input type="button" value="확인" onclick="set_ItemList(4);"></td>
+					</tr>
+					<tr>
+						<td>변경가격</td>
+						<td><input type="text" id="item4_chPrice" value=""></td>
+					</tr>
+					<tr>
+						<td>변경수량</td>
+						<td><input type="text" id="item4_chCount" value=""></td>
+					</tr>
+					<tr>
+						<td rowspan="3">물품6</td>
+						<td>변경이름</td>
+						<td><input type="text" id="item5_chName" value=""></td>
+						<td rowspan="3"><input type="button" value="확인" onclick="set_ItemList(5);"></td>
+					</tr>
+					<tr>
+						<td>변경가격</td>
+						<td><input type="text" id="item5_chPrice" value=""></td>
+					</tr>
+					<tr>
+						<td>변경수량</td>
+						<td><input type="text" id="item5_chCount" value=""></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	//추가 할 것 : 구매목록  
+	var inputCoin;
+	var sumCoin = 0;
+	var itemArray = new Array(6);
+	var setItemPrice = [3000, 2500, 2000, 1500, 1000, 500];
+	var setItemName = ["커카컬라", "싸이다", "뽠타", "콜드6", "마시쪙", "데헷"]; // 나중에 관리자 모드를 사용하여, 제품의 이름을 쉽게 바꿔주기위해 
+	var setItemCount = [10, 10, 10, 10, 10, 10]; 						// 나중에 관리자 모드를 사용하여, 제품의 갯수를 쉽게 바꿔주기위함
+	var purList ="";
+	
+	for(var i = 0; i < itemArray.length ; i++){
+		itemArray["item" + i] = {name: setItemName[i], price : setItemPrice[i], count : setItemCount[i], purCount : 0 };
+		// 자판기에 들어갈 물품에 이름을 할당해주고, 갯수를 초기화 해준다. 인덱스네임을 저따구로 해준이유는 구매버튼 눌렀을 때 아이템에 관한 정보를 빨리찾기위해 
+	}
+	
+	function input_money() { // 돈 입력 받는 함수, 예외처리 검사 및 총 합계 셋팅 
+		inputCoin = document.getElementById("inputCoinBox").value;
+		
+		if(inputCoin < 0) {
+			alert("0이상의 값을 입력해주세요");
+			return ;
+		}
+		
+		if(isNaN(inputCoin)) {
+			alert("숫자를 입력해주세요");
+			return;
+		}
+		
+		sumCoin -= 0;
+		inputCoin -= 0;
+		sumCoin += inputCoin;
+		document.getElementById("sumCoinBox").innerHTML = sumCoin;
+		document.getElementById("inputCoinBox").value = "";
+	} 
+	
+	function purchase_fun(itemIndexName) { // 물품의 구매 여부를 확인하고, 물품을 구매하면 입력한 총액에서 구입한 물품금액을 뺀다 
+		if(sumCoin - itemArray[itemIndexName].price < 0){
+			alert("짤을 더 넣어주삼");
+			return ;
+		}
+		
+		if(itemArray[itemIndexName].count == 0){
+			alert("아 님 품절이요.. ㅠㅠ");
+			return ;
+		}
+		
+		sumCoin -=itemArray[itemIndexName].price;
+		//전체 돈에서 물품가격을 빼고 그것을 화면에 표
+		document.getElementById("sumCoinBox").innerHTML = sumCoin;	
+		
+		itemArray[itemIndexName].count--; //하나 샀으니 하나 줄여야쟤~
+		if(itemArray[itemIndexName].count == 0){
+			document.getElementById(itemIndexName + "_count").innerHTML = "품절";
+			//제품 숫자가 0이면 품절시쿄야죠잉 ㅋㅋ 
+		}
+		else{
+			document.getElementById(itemIndexName + "_count").innerHTML = itemArray[itemIndexName].count;
+		}
+		itemArray[itemIndexName].purCount++;
+		
+		purList += "구매목록입니다 -> " + "&nbsp;" + "제품명 : " + itemArray[itemIndexName].name + "&nbsp;&nbsp;" + "구매 갯수 : " + itemArray[itemIndexName].purCount +"<br>"
+		document.getElementById("purchaseList").innerHTML = purList;
+			
+	}
+	
+	function cal_changeCoin(){
+		for(var i = 0; i < itemArray.length ; i++){
+			itemArray["item" + i].purCount = 0;
+		// 코인 가져가는거니까 구매 갯수도 초기화  
+		}
+		
+		purList = "=========" + "<br>" + "빠이용~ " + "<br>" + "=========" + "<br>";
+		document.getElementById("purchaseList").innerHTML = purList;
+		purList = "";
+		
+		var w5000 = parseInt(sumCoin / 5000);
+		var change = parseInt(sumCoin % 5000);
+		
+		var w1000 = parseInt(change / 1000); 
+		change = parseInt(sumCoin % 1000);
+		
+		var w500 = parseInt(change / 500);
+		change = parseInt(sumCoin % 500);
+		
+		var w100 = parseInt(change / 100);
+		change = parseInt(sumCoin % 100);
+		
+		var w10 = parseInt(change / 10);
+		change = parseInt(sumCoin % 10);
+		
+		document.getElementById("won5000").innerHTML = w5000;
+		document.getElementById("won1000").innerHTML = w1000;
+		document.getElementById("won500").innerHTML = w500;
+		document.getElementById("won100").innerHTML = w100;
+		document.getElementById("won10").innerHTML = w10;
+		
+		sumCoin = 0;
+		document.getElementById("sumCoinBox").innerHTML = sumCoin;
+	}
+	
+	function set_ItemList(itemIndexNumber){ //예외처리는 하지 않았습니다 헑헑 너무 힘두라 ㅠ
+		var chName = document.getElementById("item" + itemIndexNumber + "_chName").value;
+		var chPrice = document.getElementById("item" + itemIndexNumber + "_chPrice").value;
+		var chCount = document.getElementById("item" + itemIndexNumber + "_chCount").value;
+		
+		if((chName == "") || (chPrice == "") || (chCount == "")){
+			alert("빈칸을 채워주세요");
+			return ;
+		}
+		
+		if(isNaN(chPrice) || isNaN(chCount)){
+			alert("숫자를 입력해주세요");
+			return ;
+		}
+		
+		if((chPrice < 0) || (chCount < 0)){
+			alert("0 보다 크거나 같은 수를 넣어주세요.");
+			return ;
+		}
+		
+		setItemName[itemIndexNumber] = chName;
+		setItemPrice[itemIndexNumber] = chPrice;
+		setItemCount[itemIndexNumber] = chCount
+		
+		itemArray["item" + itemIndexNumber] = {name: setItemName[itemIndexNumber], price : setItemPrice[itemIndexNumber], count : setItemCount[itemIndexNumber], purCount : 0 };
+		
+		document.getElementById("item" + itemIndexNumber + "_name").innerHTML = itemArray["item" + itemIndexNumber].name;
+		document.getElementById("item" + itemIndexNumber + "_price").innerHTML = itemArray["item" + itemIndexNumber].price;
+		document.getElementById("item" + itemIndexNumber + "_count").innerHTML = itemArray["item" + itemIndexNumber].count;
+	}
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>VENDING MACHINE</title>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<script src="./vending.js"></script>
+	</head>
+	<body style="width: 370px; margin: 10px auto; padding: 20px 30px;">
+		<div style="width: 300px; padding: 25px; border:8px solid; border-color:skyblue orange;">
+			<table style="text-align: center; margin-bottom: 20px">
+				<tr style="background-color: rgba(126, 193, 208, .3)">
+					<th width="45px" height="70px">1<br />img</th>
+					<th width="45px" height="70px">2<br />img</th>
+					<th width="45px" height="70px">3<br />img</th>
+					<th width="45px" height="70px">4<br />img</th>
+					<th width="45px" height="70px">5<br />img</th>
+					<th width="45px" height="70px">6<br />img</th>
+				</tr>
+				<tr>
+					<td width="45px"><a onclick="select(1,100);">100</a></td>
+					<td width="45px"><a onclick="select(2,200);">200</a></td>
+					<td width="45px"><a onclick="select(3,300);">300</a></td>
+					<td width="45px"><a onclick="select(4,400);">400</a></td>
+					<td width="45px"><a onclick="select(5,500);">500</a></td>
+					<td width="45px"><a onclick="select(6,600);">600</a></td>
+				</tr>
+				<tr style="background-color: rgba(126, 193, 208, .3)">
+					<th width="45px" height="70px">7<br />img</th>
+					<th width="45px" height="70px">8<br />img</th>
+					<th width="45px" height="70px">9<br />img</th>
+					<th width="45px" height="70px">10<br />img</th>
+					<th width="45px" height="70px">11<br />img</th>
+					<th width="45px" height="70px">12<br />img</th>
+				</tr>
+				<tr>
+					<td width="45px"><a onclick="select(7,700);">700</a></td>
+					<td width="45px"><a onclick="select(8,800);">800</a></td>
+					<td width="45px"><a onclick="select(9,900);">900</a></td>
+					<td width="45px"><a onclick="select(10,1000);">1000</a></td>
+					<td width="45px"><a onclick="select(11,1100);">1100</a></td>
+					<td width="45px"><a onclick="select(12,1200);">1200</a></td>
+				</tr>
+			</table>
+			<div style="text-align: right; margin-bottom: 20px">
+				<span>돈 ▼</span>
+				<input id="inputMoney" type="text" size="5" placeholder="insert_money_here" style="text-align: right;" /><br />
+				<input id="currentMoney" type="text" size="5" placeholder="0" style="text-align: center;" disabled="disabled" />
+				<input type="button" value="넣기" onclick="insert_money();" /><br /><br />
+
+				<span> 거스름돈 ▼</span>
+				<input type="button" value="반환" onclick="receive_money();" /><br />
+				<input id="change"type="text" size="5" placeholder="0" style="text-align: center;" disabled="disabled" />
+				<input type="button" value="받기" onclick="clear_moneybox();" />
+			</div>
+			<div id="receiveBox" style="width: 90px; height: 70px; border: 6px dotted; border-color:orange skyblue; padding: 10px 30px;">
+			</div>
+			<input type="button" value="받기" onclick="clear_box();" style="margin: 5px 105px 0px;" />
+		</div>
+	</body>
+</html>

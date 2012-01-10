@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>고객정보</title>
+	</head>
+	<body>
+		<h1>고객정보</h1>
+		<h2>고객정보 입력</h2>
+
+		<ul>
+			<li>이름  : <input type="text" id="name" value=""/></li>
+			<li>생년월일  : <input type="text" id="birth" value=""/>(-없이 입력)</li>
+			<li>성별  : 
+				<select id="sex">
+					<option value="M">남자</option>
+					<option value="F">여자</option>
+				</select>
+			</li>
+			<li>전화번호 : <input type="text" id="phone" value=""/>(-없이 입력)</li>			
+			<li><input type="button" id="btnInput" value="입력" onclick="inputData();"/></li>			
+		</ul>
+		
+		<h2>고객정보 리스트</h2>
+		<h3>검색</h3>
+		<ul>
+			<li>이름 : <input type="text" id="schName" /><input type="button" id="schBtn" value="검색" onclick="searchData();"/></li>
+		</ul>
+		<input type="button" id="totalBtn" value="전체 보기" onclick="viewTotalData();" />
+		
+		<h3>리스트</h3>
+		<table width="800" border="1">
+			<col width="200"/>
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			
+			<thead>
+				<tr>
+					<th>순번</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>성별</th>
+					<th>전화번호</th>					
+				</tr>
+			</thead>
+			<tbody id="listBody">
+
+			</tbody>
+		</table>
+	</body>
+
+	
+	<script type="text/javascript">
+		//dataCnt 대신에 length로 바꾸기 , 객체 초기화 방식 다르게 바꿔보
+		var dataCnt = 0;
+		var personData = new Array();
+		var listBody = document.getElementById("listBody");
+		
+		function inputData() {
+			personData[dataCnt] = {
+				name : document.getElementById("name").value, 
+				birth : document.getElementById("birth").value, 
+				sex: document.getElementById("sex").value, 
+				phone: document.getElementById("phone").value
+			};
+			innerTable(dataCnt);
+			dataCnt++;
+		}
+		
+		function searchData() {
+			listBody.innerHTML = "";
+			var tempName = document.getElementById("schName").value;
+			for(var i = 0; i < dataCnt; i++){
+				if(personData[i].name == tempName){
+					innerTable(i);
+				}
+			}
+		}
+		
+		function viewTotalData() {
+			listBody.innerHTML = "";
+			for(var i = 0; i < dataCnt; i++){
+				innerTable(i);
+			}
+		}
+		
+		function innerTable(cnt) {
+			listBody.innerHTML += 
+				"<tr><td>" + ((cnt - 0 ) + 1) + "</td><td>" + personData[cnt].name + "</td><td>" + personData[cnt].birth + "</td><td>" + personData[cnt].sex + "</td><td>" + personData[cnt].phone + "</td></tr>";
+		}
+	</script>
+</html>

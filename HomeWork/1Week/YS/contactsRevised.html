@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>고객정보</title>
+		<script type="text/javascript">		
+			var cnt = -1;
+			var list = new Array();
+			
+			function innerHTML(cNum) {
+				document.getElementById("listBody").innerHTML +=
+					"<tr><td>" + (cNum+1) + "</td><td>" + list[cNum].name + "</td><td>" + list[cNum].birth + "</td><td>" + list[cNum].sex + "</td><td>" + list[cNum].phone + "</td></tr>";
+			}
+			
+			function add() {
+				cnt++;
+				
+				var loadData = function(ID) {
+					return document.getElementById(ID).value;
+				}
+				
+				list[cnt] = { name:loadData('name'), birth:loadData('birth'), sex:loadData('sex'), phone:loadData('phone') };
+				
+				innerHTML(cnt);
+			}
+			
+			function find() {
+				schName = document.getElementById("schName").value;
+				document.getElementById("listBody").innerHTML ="";
+				for(var i=0;i<=cnt;i++){
+					if(list[i].name == schName){
+						innerHTML(i);
+					}
+				}
+			}
+			
+			function listAll() {
+				document.getElementById("listBody").innerHTML ="";
+				for(var i=0;i<=cnt;i++){
+					innerHTML(i);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>고객정보</h1>
+		<h2>고객정보 입력</h2>
+		<ul>
+			<li>이름  : <input type="text" id="name" value=""/></li>
+			<li>생년월일  : <input type="text" id="birth" value=""/>(-없이 입력)</li>
+			<li>성별  : 
+				<select id="sex">
+					<option value="M">남자</option>
+					<option value="F">여자</option>
+				</select>
+			</li>
+			<li>전화번호 : <input type="text" id="phone" value=""/>(-없이 입력)</li>			
+			<li><input type="button" id="btnInput" value="입력" onclick="add();"/></li>			
+		</ul>
+		
+		<h2>고객정보 리스트</h2>
+		<h3>검색</h3>
+		<ul>
+			<li>이름 : <input type="text" id="schName" /><input type="button" id="schBtn" value="검색" onclick="find();" /></li>
+		</ul>
+		<input type="button" id="totalBtn" value="전체 보기" onclick="listAll();" />
+		<h3>리스트</h3>
+		<table width="800" border="1">
+			<col width="200"/>
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<thead>
+				<tr>
+					<th>순번</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>성별</th>
+					<th>전화번호</th>					
+				</tr>
+			</thead>
+			<tbody id="listBody">
+			</tbody>
+		</table>
+	</body>
+</html>

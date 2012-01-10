@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+		<script language="JavaScript">
+
+			function cal(rest)
+			{						
+				rest.value = "";	
+			}
+			
+			
+		</script>
+	</head>
+
+	<body>
+		<form name="login">
+		<table border="1" width="400">
+			
+			<tr>
+				<td align="center"><a href="회원가입.html"><b><font size="2" face="휴먼엑스포">회원가입</font></b></a></td>
+				<td align="center"><a href="아이디찾기.html"><b><font size="2"color="grade" face="휴먼엑스포 ">아이디</font></b></a>/
+					<a href="비밀번호찾기.html"><b><font size="2"color="grade" face="휴먼엑스포">비밀번호 찾기</font></b></a>
+				</td>
+			</tr>
+			<tr>
+				<td align="center"><input type="text" size="30"  id="id" value="아이디" onclick="cal(document.login.id)" /></td>
+				<td align="center"><input type="checkbox" value="check" />아이디기억</td>
+			</tr>
+			<tr>
+				<td align="center" width="57%"><input size="32"  type="password" id="pass" value="비밀번호"  onclick="cal(document.login.pass)" /></td>
+				<td align="center"><input type="button" value="로그인" onclick="login()" />
+				<input type="button" value="로그아웃"  /></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><a href="게시판.html"><font face="휴먼엑스포" size="5">게시판 go!</font></a></td>
+			</tr>
+			
+		</table>
+		</form>
+	</body>
+				
+		
+</html>
+

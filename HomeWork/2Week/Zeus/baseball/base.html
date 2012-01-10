@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript" src="lib/blackbird.js"></script>
+		<link type="text/css" rel="stylesheet" href="lib/blackbird.css" />
+		<title>JavaScript</title>
+	</head>
+	<body>
+		<div>
+			<P>
+				게임 유의사항 : <br>
+				1~9까지의 수 중 3개 클릭 후 go 누르면 답안 제출. 잘못클릭하면 back 클릭<br>
+				10회 안에 정답을 맞추지 못하면 게임 강제종료 ~ <br>
+				게임 끝나고 초기화는 F5키로... -_-ㅋ..
+			</P>
+		</div>
+		<br >
+		<DIV id="pntInputNum" style="PADDING-RIGHT: 15px; PADDING-LEFT: 15px; FONT-SIZE: 13pt; LEFT: 100px; PADDING-BOTTOM: 15px; WIDTH: 400px; COLOR: blue; PADDING-TOP: 15px;  TOP: 500px">
+			<br>
+		</DIV>
+		<form>
+			<table id="inputTable">
+				<tr>
+					<td>
+						<input type="button" value="  1  " onclick="input_Fnc(1);" />
+					</td>
+					<td>
+						<input type="button" value="  2  " onclick="input_Fnc(2);" />
+					</td>
+					<td>
+						<input type="button" value="  3  " onclick="input_Fnc(3);" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="  4  " onclick="input_Fnc(4);" />
+					</td>
+					<td>
+						<input type="button" value="  5  " onclick="input_Fnc(5);" />
+					</td>
+					<td>
+						<input type="button" value="  6  " onclick="input_Fnc(6);" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value="  7  " onclick="input_Fnc(7);" />
+					</td>
+					<td>
+						<input type="button" value="  8  " onclick="input_Fnc(8);" />
+					</td>
+					<td>
+						<input type="button" value="  9  " onclick="input_Fnc(9);" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" value=" Go " onclick="check_ans();"/>
+					</td>
+					<td colspan="2">
+						<input type="button" value="Back" onclick="go_back();"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<DIV id="printResult" style="PADDING-RIGHT: 15px; PADDING-LEFT: 15px; FONT-SIZE: 13pt;
+			LEFT: 100px; PADDING-BOTTOM: 15px; WIDTH: 400px; COLOR: red; PADDING-TOP: 15px;  TOP: 500px"></DIV>
+		<br >
+
+	</body>
+</html>
+<script type="text/javascript">
+	var goCnt = 0; // 총 게임 도전 횟수
+	var inputCnt = 0; // 버튼클릭횟수를 카운트하여 예외처리를 함
+	var strike = 0, ball = 0;
+	var ansData = new Array(3);
+	var userData = new Array(3);
+	//var PrintStr = ""; // 현재 사용자가 입력한 숫자를 보여줌	
+	var RememStr = ""; // 1회마다 게임 결과를 저장하여 보여줌
+	var PrintStrr = new Array(3); // 현재 사용자가 입력한 숫자를 보여줌 , back을 하기위해 배열로 바꿈
+	
+	// 랜덤숫자 생성 및 중복생성여부 체크
+	for(var i = 0; i < ansData.length; i++) {
+		ansData[i] = Math.ceil((Math.random() * 8) + 1);	
+		for(var j = 0; j < i; j++) {
+			if(ansData[i] == ansData[j]) {
+				i--;
+				break;
+			}
+		}
+	}
+
+	//입력예외처리를 최소화하기위해 버튼형식으로 바꿈
+	function input_Fnc(inputNum) {
+		if(inputCnt > 2) {
+			alert("입력 갯수 초과");
+			inputNum = "";
+			return;
+		}
+
+		userData[inputCnt] = inputNum; // 클릭된 숫자를 배열에 넣음	
+		//PrintStr += inputNum + "&nbsp;";
+		if(inputCnt == 0){
+			PrintStrr[inputCnt] = inputNum + "&nbsp;";
+		}
+		else if(inputCnt > 0) {
+			PrintStrr[inputCnt] = PrintStrr[inputCnt - 1] + inputNum + "&nbsp;"; 	
+		}
+		
+		//document.getElementById('pntInputNum').innerHTML = PrintStr; // 클릭된 숫자를 화면에 뿌려줌
+		document.getElementById('pntInputNum').innerHTML = PrintStrr[inputCnt]; // 클릭된 숫자를 화면에 뿌려줌
+		inputCnt++; // 예외처리를 위해 한번클릭 시 마다 입력카운트 한번씩 증가 
+	}
+
+	//사용자의 정답제출을 판단
+	function check_ans() {
+		if(inputCnt < 3) { // 입력갯수가 3개가 안될 시 예외처리
+			alert("입력 갯수가 부족합니다");
+			document.getElementById('pntInputNum').innerHTML = "<br>" + " "; //입력데이터 출력부분 초기화
+			//PrintStr = "";
+			PrintStrr[0] = PrintStrr[1] = PrintStrr[2] = "";
+			inputCnt = 0;
+			return;
+		}
+	
+		//RememStr += (goCnt + 1) + " 번째 도전 : " + PrintStr; // 게임 결과를 저장하기 위함
+		RememStr += (goCnt + 1) + " 번째 도전 : " + PrintStrr[2]; // 게임 결과를 저장하기 위함
+		//PrintStr = ""; // printStr의 할 일은 요기서 끝 , 스트링 비워버림	
+		PrintStrr[0] = PrintStrr[1] = PrintStrr[2] = "";
+		inputCnt = 0; // 입력이 완료되었으니 입력횟수를 0으로 초기화 해줌	
+		goCnt++; strike = 0, ball = 0; //게임 go 카운트 증가 
+
+		for(var i = 0; i < ansData.length; i++) {
+			for(var j = 0; j < ansData.length; j++) {
+				if(ansData[i] == userData[j]) {
+					i == j ? strike++ : ball++;
+					break;
+				}
+			}
+		}
+				
+		RememStr += "&nbsp;&nbsp;&nbsp;" + strike + "strike" + "  "+ ball + "Ball<br>";	
+		document.getElementById('printResult').innerHTML = RememStr; // 게임 결과 출력
+
+		if(strike == 3) {
+			alert("Win ~ !!!!");
+			return;
+		}
+
+		if(goCnt == 10) { // 게임도전횟수가 10회시 게임 종료
+			alert("Game Over ~ !!! answer :" + ansData);
+			return;
+		}		
+	}
+	
+	function go_back(){ // 숫자 되돌리기 
+		if(inputCnt < 0){
+			alert("되돌릴 숫자가 없습니다.");
+			return ;
+		}
+		
+		if(inputCnt == 0){
+			userData[inputCnt] = " ";
+			document.getElementById('pntInputNum').innerHTML = PrintStrr[inputCnt] = " " + "<br>";
+		}
+		else if(inputCnt > 0){
+			userData[inputCnt] = " ";
+			inputCnt--;
+			document.getElementById('pntInputNum').innerHTML = "";
+			document.getElementById('pntInputNum').innerHTML = PrintStrr[inputCnt];
+		}		
+	}
+</script>

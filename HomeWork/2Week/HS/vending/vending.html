@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+		<script type="text/javascript" src="vending.js"></script>
+		<link rel="stylesheet" type="text/css" href="styleVending.css" />
+		<title>자판기</title>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="printDrink">
+				<img src="images/drinkList.png" class="drinkList" />
+				<div class="wonList">
+					<img src="images/vitaminWater.png" id="vitaminWater" />
+					<img src="images/twoPercent.png" id="twoPercent" />
+					<img src="images/vitapower.png" id="vitapower" />
+					<img src="images/strawberry.png" id="strawberry" />
+					<img src="images/sikhye.png" id="sikhye" />
+					<img src="images/coffee.png" id="coffee" />
+				</div>
+			</div>
+			<div id="backMoney">
+				<div id="printMoney">
+					<input type="button" value="￦10" />
+					<input type="button" value="￦50" />
+					<input type="button" value="￦100" />
+					<input type="button" value="￦500" />
+					<input type="button" value="￦1000" />
+				</div>
+				<div id="inputedMoney">
+					▶
+					<input type="text" value="0" size="4" id="curMoney"/>
+					<input type="button" value="반환" id="returnMoney" />
+				</div>
+			</div>
+			<div id="getDrink">
+				<img src="images/basic.png" />
+			</div>
+		</div>
+		<div id="side">
+			<input type="button" value="판매현황" id="sales" />
+			<input type="button" value="음료 채우기" id="fullDrink" />
+			<div></div>
+		</div>
+	</body>
+</html>

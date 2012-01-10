@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Board</title>
+	</head>
+	<body>
+		<h1>글수정</h1>
+		<form method="get" action="boardList.html">
+		<table border="1">
+			<tr>
+				<th><label for="title">제목</label></th>
+				<td><input type="text" name="title" id="title" value="오효선은 이쁘다." /></td>
+			</tr>
+			<tr>
+				<th><label for="content">내용</label></th>
+				<td><textarea>ㅁㅇㅁㅇㄴㄻㄴㅇㄻㄴㅇㄻㄴㅇㄹ</textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="글쓰기" />
+					<input type="button" value="취소" onClick="history.go(-1)" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>

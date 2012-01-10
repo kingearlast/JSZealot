@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>고객정보</title>
+		<script type="text/javascript">
+			/*
+			 * Comment by Kingear
+			 * 
+			 * 전역변수 과다 사용 
+			 * 
+			 * 주소록에 저장될 요소들을 각각의 배열에 넣는 것보다 객체단위로 묶어서 객체 배열에 저장하는 것이 좋을 것 같음
+			 * 
+			 */
+		
+		
+			var list_number = [];
+			var name = [];
+			var birthday = [];
+			var sex = [];
+			var phonenumber = [];
+			var i = 0;
+			var listbody;
+
+			function add() {
+				listbody = document.getElementById("listBody");
+				list_number[i] = i + 1;
+				name[i] = document.getElementById("name").value;
+				birthday[i] = document.getElementById("birthday").value;
+				sex[i] = document.getElementById("sex").value;
+				phonenumber[i] = document.getElementById("phonenumber").value;
+				
+				if(name[i] =="" ||birthday[i]==""||phonenumber[i]=="")
+				{
+					alert("정보를 모두 입력하여 주세요.");
+					return ;
+				}
+
+				print(i);
+				i++;
+
+			}
+
+			function showtotal() {
+				var j = 0;
+				var listbody = document.getElementById("listBody");
+
+				listbody.innerHTML = "";
+
+				for( j = 0; j < i; j++) {
+					print(j);
+
+				}
+
+			}
+
+			function search() {
+				var j = 0;
+				var ok =0;
+				var searchName = document.getElementById("schName").value;
+				var listbody = document.getElementById("listBody");
+				
+				if(searchName ==""){
+					alert("검색할 이름을 입력하여 주십시오.");
+					return ;
+				}
+				listbody.innerHTML = "";
+				for( j = 0 ; j < i; j++) {
+					if(searchName ==name[j])
+					{
+						print(j);
+						ok=1;							
+					}
+				}
+				if(ok==0)
+					alert("찾으시는 정보가 없습니다.");
+			}
+			
+			function print(i){
+				listbody.innerHTML += "<tr><td>" + list_number[i] + "</td><td>" + name[i] + "</td><td>" + birthday[i] + "</td><td>" + sex[i] + "</td><td>" + phonenumber[i] + "</td></tr>";
+			}
+
+		</script>
+	</head>
+	<body>
+		<h1>고객정보</h1>
+		<h2>고객정보 입력</h2>
+		<ul>
+			<li>
+				이름  :
+				<input type="text" id="name" value=""/>
+			</li>
+			<li>
+				생년월일  :
+				<input type="text" id="birthday" value=""/>
+				(-없이 입력)
+			</li>
+			<li>
+				성별  :
+				<select id="sex">
+					<option value="M">남자</option>
+					<option value="F">여자</option>
+				</select>
+			</li>
+			<li>
+				전화번호 :
+				<input type="text" id="phonenumber" value=""/>
+				(-없이 입력)
+			</li>
+			<li>
+				<input type="button" id="btnInput" value="입력" onclick="add()"/>
+			</li>
+		</ul>
+		<h2>고객정보 리스트</h2>
+		<h3>검색</h3>
+		<ul>
+			<li>
+				이름 :
+				<input type="text" id="schName" />
+				<input type="button" id="schBtn" value="검색" onclick="search()"/>
+			</li>
+		</ul>
+		<input type="button" id="totalBtn" value="전체 보기" onclick="showtotal()"/>
+		<h3>리스트</h3>
+		<table width="800" border="1">
+			<col width="200"/>
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<thead>
+				<tr>
+					<th>순번</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>성별</th>
+					<th>전화번호</th>
+				</tr>
+			</thead>
+			<tbody id="listBody">
+
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>고객정보</title>
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+		<script type="text/javascript" src="address.js"></script>
+	</head>
+	<body>
+		<div id="inputInfor">
+			<h1>고객정보</h1>
+			<h2>고객정보 입력</h2>
+			<ul>
+				<li>이름  : <input type="text" id="name" value=""/></li>
+				<li>생년월일  : <input type="text" id="name" value=""/>(-없이 입력)</li>
+				<li>성별  : 
+					<select id="sex">
+						<option value="M">남자</option>
+						<option value="F">여자</option>
+					</select>
+				</li>
+				<li>전화번호 : <input type="text" id="name" value=""/>(-없이 입력)</li>			
+				<li><input type="button" id="btnInput" value="입력" /></li>			
+			</ul>
+		</div>
+		
+		<h2>고객정보 리스트</h2>
+		<h3>검색</h3>
+		<ul>
+			<li>이름 : <input type="text" id="schName" />
+					<input type="button" id="btnSch" value="검색"/>
+			</li>
+		</ul>
+		<input type="button" id="btnTotal" value="전체 보기"/>
+		<h3>리스트</h3>
+		<table width="800" border="1">
+			<col width="200"/>
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			
+			<thead>
+				<tr>
+					<th>순번</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>성별</th>
+					<th>전화번호</th>					
+				</tr>
+			</thead>
+			<tbody id="listBody">
+	
+			</tbody>
+		</table>
+	</body>
+	
+	<script type="text/javascript">
+	/*
+	* document.getElementById("name").value = 30;  id 가 num01 인 HTML 요소에 값 넣기 
+	* document.getElementById("name").value;  id 가 num01 인 HTML 요소의 값 가져오기	 
+	* document.getElementById("name").innerHTML = "<tr><td> data </td></tr>" id 가 name 인 요소안에 새로운 HTML 구조 넣기
+	* 버튼에 이벤트 다는 방법  <input type="button" id="totalBtn" value="전체 보기" onclick="함수호출();"/> 
+	* 이벤트를 달고 싶은 요소에 onclick 인라인 이벤트를 작성한다. ( onclick="함수명()" )
+	*/ 
+	</script>
+</html>

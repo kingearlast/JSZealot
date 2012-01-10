@@ -1,0 +1,87 @@
+		
+/*
+값이 한 개 : '상하좌우'
+값이 두 개 : '상하' '좌우'
+값이 세 개 : '상' '좌우' '하'
+값이 네 개 : '상' '우' '하' '좌'
+
+div#header a{position:absolute;right:0;top:23px}
+div#content p{line-height:1.4}
+div#navigation{background:#B9CAFF}
+div#extra{background:#FF8539}
+div#footer{background: #333;color: #FFF}
+div#footer p{margin:0;padding:5px 10px}
+div#footer a{display:inline;padding:0;color: #C6D5FD}
+*/
+
+#wrap{
+	width: 900px;
+	/* height: 800px; */
+	position: relative;
+	margin: 0 auto;
+}
+.header{
+	height: 10%;
+	background-color: #B9CAFF;
+}
+.header > .logo{
+	float:left;
+	width: 25%;
+	height: 15%;
+}
+.header > .logo img{
+	width: 150px;
+	height: 100px;
+}	
+.header .gnb{
+	float:left;
+	width: 75%;
+	height: 100px;
+	background-color: #ff8080;
+}
+.header .gnb ul li{
+	list-style: none;
+	display: inline;
+}
+.search{
+	float:right;
+	width: 75%;
+	height: 95px;
+	background-color: #97f20d;
+}
+.search > fieldset{
+	padding: 20px;
+	margin: 0px 15px 15px 15px;
+}
+.search > fieldset > select{
+	margin-right: 5px;
+}
+.aSide{
+	float:left;
+	width: 25%;
+	background-color: #ffff80;
+	
+}
+.aSide > .login a{
+	display: inline-block;
+	font: 11px bold;
+	text-align: left;
+	padding: 10px 6px 0px 6px;
+	
+}
+.aSide > .sideMenu{
+	font: 20px bold "Courier New", Courier, monospace;
+}
+.container{
+	float:left;
+	width: 75%;
+	background-color: #B9CAFF;
+}
+.container > .content{
+	background-color: #0080c0;
+}
+.footer{
+	float:left;
+	width: 100%;
+	background-color: #a33aa0;
+}

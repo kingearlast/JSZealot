@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Calculation</title>
+	</head>
+	<body>
+		<h1>Calculation</h1>
+		<input type="text" id="num01" />
+
+		<select id="operator">
+			<option value="+">+</option>
+			<option value="-">-</option>
+			<option value="*">*</option>
+			<option value="/">/</option>
+		</select>
+		<input type="text" id="num02" />
+
+		<input type="text" id="result" disabled="true"/>
+		<input type="button" value="calc" onclick="calc()"/>
+	</body>
+</html>
+<script type="text/javascript">
+	function calc() {
+		var temp = { num1 : 0, num2 : 0, op : ""};
+		temp.num1 = document.getElementById("num01").value;
+		temp.num2 = document.getElementById("num02").value;
+		temp.op = document.getElementById("operator").value;
+		
+		if(isNaN(temp.num1) || isNaN(temp.num2)){
+			alert("숫자를 입력해주십셩 고갱님");
+			return;
+		}
+		
+		if((temp.op == '/') && (temp.num2 == 0)){
+			alert("숫자 0으로는 나누실 수 없습니당.");
+			return ;
+		}
+		
+		document.getElementById("result").value = eval(temp.num1 + temp.op + temp.num2);
+	}	
+</script>
+

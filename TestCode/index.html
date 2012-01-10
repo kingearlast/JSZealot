@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<h1>New Web Project Page</h1>
+	</body>
+	<script type="text/javascript">
+		// ============== 문제 1번 ======================
+
+		var obj = {};
+		
+		
+		// var obj.x = 10;
+// 		
+		// obj["2"] = 20;
+// 		
+		// obj.3 = 30;
+// 		
+		// alert(obj.y);
+
+		// ============== 문제 2번 ======================
+		var a = (function(num) {
+			if(arguments.length === arguments.callee.length) {
+				a = 10;
+				return num + a;
+			} else {
+				console.log("문제 2-1 : " + arguments);
+				// [object Arguments]
+				var a = 20;
+				return arguments.callee(arguments[2]);
+			}
+		})(50, 100, 60);
+		console.log("문제 2-2 : " + a);
+		// 70
+
+		// ============== 문제 3번 ======================
+		function curryingFunc(a) {	
+			
+			return {
+				x : function() {
+					
+					return ++a;
+				},
+				y : function() {
+					return a--;
+				},
+				z : function() {
+					return a += 2;
+				}
+			};
+		}
+
+		var foo = curryingFunc(10);
+		
+		var x = foo.x;
+		var y = foo.y;
+		var z = foo.z;
+		
+		console.log("문제 3-1 : " + z()); // 12
+		console.log("문제 3-2 : " + y()); // 12
+		console.log("문제 3-3 : " + z()); // 13
+		console.log("문제 3-4 : " + x()); // 14
+
+		// ============== 문제 4번 ======================
+
+		function average() {
+			// 전달받은 인자들의 평균을 구해서 리턴한다.
+			var total = 0;
+			for(var arg in arguments) {
+				total += arguments[arg];
+			}
+			console.log("문제 4 : " + (total / arguments.length));
+		}
+		
+		//ex) 호출 예시 : 아래와 같이 호출 했을 때 올바른 값이 나와야 한다.
+		average( 10, 5, 8, 6, 8);                     // 7.4
+		average( 10, 40, 20, 30, 20, 60, 80, 20, 40); // 35.55555555...
+		average( 10, 40, 20, 30, 20, 60, 80);         // 37.14285714...
+
+	</script>
+</html>

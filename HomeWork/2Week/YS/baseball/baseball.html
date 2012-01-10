@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>BASEBALL</title>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+		<script>
+			var turnCnt = 0;
+			var outcome = [];
+			
+			window.onload = function(){				
+				outcome[0] = Math.ceil(Math.random()*9);
+				check_overlap(1);
+				check_overlap(2);
+	
+				function check_overlap(toChangeN) {
+					var newO = Math.ceil(Math.random()*9);
+					
+					for(var i=0; i<toChangeN; i++) {
+						if(newO != outcome[i]){
+							outcome[toChangeN] = newO;
+						} else if(newO == outcome[i]){
+							return check_overlap(toChangeN);
+						}
+					}
+				}
+				console.log('outcome '+outcome);
+			};
+		
+			function input() {
+				var inputs;
+				turnCnt++;
+				input_num();
+				innerHTML(check());
+				
+				function input_num() {
+					var loadData = function(ID) {
+						return document.getElementById(ID).value;
+					}
+					
+					inputs = [loadData('in0'),loadData('in1'),loadData('in2')];
+				}
+				
+				function check() {
+					var strikeBall = [0,0];
+					var confirmS=[3,3,3];
+					
+					for(var i=0; i < 3; i++) {
+						if(isNaN(inputs[i]) || inputs[i]<0 || inputs[i]>9) {
+							alert('0~9 사이의  숫자를 입력해 주세요 ');
+							return strikeBall;
+						}
+					}
+					
+					for (var i=0; i < 3; i++) {
+						for (var j=0; j < 3; j++) {
+							if(outcome[i] == inputs[j] && i==j){
+								strikeBall[0]++;
+								confirmS[i] = i;
+							} else if(outcome[i] == inputs[j] && i!=j && i!=confirmS){
+								strikeBall[1]++;
+							}
+						};
+					};
+					
+					return strikeBall;
+				}
+				
+				function innerHTML(strikeBall) {
+					document.getElementById("gameTable").innerHTML +=
+						"<tr> <th>" + 'turn ' + turnCnt + "</th>" +
+							"<td>" + inputs[0] + "</td><td>" + inputs[1] + "</td><td>" + inputs[2] + "</td>" +
+							"<td>" + strikeBall[0] + " strike " + strikeBall[1] + " ball" + "</td></tr>";
+					if(strikeBall[0] == 3) {
+						alert('You WIN !');
+						return;
+					};
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Play BASEBALL</h1>
+		<p>0~9까지 숫자를 입력해 주세요 !</p>
+		
+		<input type="button" value="new game" onclick="history.go(0);" />
+		<table id="gameTable">
+			<tr>
+				<th><label for="title">guess ?</label></th>
+				<td><input type="text" id="in0" value="" size="2" /></td>
+				<td><input type="text" id="in1" value="" size="2" /></td>
+				<td><input type="text" id="in2" value="" size="2" /></td>
+				<td><input type="button" value="playball !" onclick="input();" /></td>
+			</tr>
+		</table>
+	</body>
+</html>

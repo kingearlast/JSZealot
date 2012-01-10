@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>야구 게임</title>
+		<script language="javascript">
+			var SecretNumber = [ 'A'];
+			var count=0;;
+			
+			function MakeNumber(){
+				count =0;
+				for(var i=0; i<3; i++)
+				{
+					SecretNumber[i] = Math.ceil(Math.random() * 9);
+					for(var j=0; j<i ; j++)
+					{
+						if( SecretNumber[i]== SecretNumber[j])
+						{
+							--i;
+							break;
+						}
+					}
+				}
+			document.getElementById("start").value = "";
+			document.getElementById("S").value = "";
+			document.getElementById("Result").value = "";
+			alert('게임시작합니다.');
+			alert('숫자를 입력하여주세요(중복숫자 안됨)');	
+			}
+			
+			function check() {
+				//MakeNumber()
+				var start = document.getElementById("start");
+				var identify= {TotalNumber: start.value, CheckNumber: [] };
+				var b=0,s=0;
+				
+				
+				if(SecretNumber[0]=='A'){
+					alert('게임시작을 먼저 누르시기 바랍니다.');
+					return;
+				}
+				
+					for(var i=0 ,j=100 , k=1000 ; i<3; j /=10,i++ ,k/=10)
+				{
+					identify.CheckNumber[i] = ((identify.TotalNumber %k)-(identify.TotalNumber % j))/j;
+				
+				}
+				
+				for(var i=0; i<3; i++)
+				{
+					for(var j=i+1; j<3 ; j++)
+					{
+						if( identify.CheckNumber[i]== identify.CheckNumber[j] )
+						{
+							alert('중복하여 숫자를 입력 하였습니다. 다시 입력하여 주시시바랍니다.');
+							return ;
+						}
+					}
+				}
+				
+				document.getElementById("Result").value = (count+1)+"번째하셨습니다.";
+				if(count ==9)
+				{
+					restart("아쉽군요. 패배 하셨습니다.");
+					return;					
+				}				
+				
+			
+				document.getElementById("S").value = "";
+	
+				for(i=0; i<3; i++)
+				{
+					
+					for(j=0; j<3; j++)
+					{
+						if(SecretNumber[i]== identify.CheckNumber[j] )
+						{
+								//alert(identify.CheckNumber[i]);
+							if(j==i)
+							{
+								s++;
+								break;
+							}
+							else
+								b++;	
+						}
+					}
+				}
+				document.getElementById("S").value += (s+"스트라이크"+b+"볼");
+				if(s==3)
+				{
+					restart("축하드립니다. 승리하셨습니다.");
+					return;		
+				}
+				count++;
+			}
+			
+			function finish(result){
+				document.getElementById("Result").value = result;
+			}
+			
+			function restart(speak)
+			{
+				alert(speak+"게임이 종료됩니다.");
+				SecretNumber[0] = 'A';
+			}
+			
+			
+		</script>
+	</head>
+	<body>
+		<h1><font face="휴먼엑스포" color="gray">&nbsp;&nbsp;야 구 게 임</font></h1>
+		<table border="1">
+			<tr>
+				<th>입력</th>
+				<th>상황</th>
+				<th>결과</th>
+			</tr>
+			<tr>
+				<td>
+				<input type="text" size="29" id="start" maxlength="3"/><input type="button" value="확인" onclick="check()" />
+				</td>
+				<td>
+				<input type="text" size="29" id="S" maxlength="3"/>
+				</td>
+				<td>
+				<input type="text" size="29" id="Result" maxlength="3"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="center">
+				<input type="button" value="       게 임 시 작       "  onclick="MakeNumber()" size=" 10000"/>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

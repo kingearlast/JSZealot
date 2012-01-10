@@ -1,0 +1,98 @@
+/* css 초기화 */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0; padding: 0; border: 0; outline: 0;
+  font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit;
+  vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus { outline: 0; }
+body { line-height: 1; color: black; background: white; font-family: 돋움, Dotum, san-serif;}
+ol, ul { list-style: none; }
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; } 
+blockquote, q { quotes: "" ""; }
+
+ul {
+	list-style: none;
+}
+
+#wrap {
+	background: url('images/background.png');
+	border: 2px solid #555;
+	width: 200px;
+	height: 410px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	margin-top: 5%;
+	padding: 10px;
+}
+
+#header {
+	text-align: left;
+}
+
+#content {
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
+#content input[type=text] {
+	width: 50px;
+	height: 50px;
+	border: 2px solid #555;
+	font-size: 40px;
+	text-align: center;
+}
+#content input[type=text]:focus  {
+	border: 2px solid #0080ff;
+}
+
+/* css3 버튼 */
+#content input[type=button] {
+	display: inline-block;
+	white-space: nowrap;
+	background-color: #ccc;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#3e7eae), to(#01518d));
+	background-image: -webkit-linear-gradient(top, #3e7eae, #01518d);
+	background-image: -moz-linear-gradient(top, #3e7eae, #01518d);
+	background-image: -ms-linear-gradient(top, #3e7eae, #01518d);
+	background-image: -o-linear-gradient(top, #3e7eae, #01518d);
+	background-image: linear-gradient(top, #3e7eae, #01518d);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#3e7eae', EndColorStr='#01518d');
+	border: 1px solid #12208e;
+	padding: 0.5em 3em;
+	margin-top: 1em;
+	font: bold 1em/2em 돋움, Dotum, san-serif;
+	text-decoration: none;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(255,255,255,.8);
+	-moz-border-radius: .2em;
+	-webkit-border-radius: .2em;
+	border-radius: .2em;
+	-moz-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	-webkit-box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+	box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+#content input[type=button]:hover {
+	background-color: #3472a2;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#6598be), to(#3472a2));
+	background-image: -webkit-linear-gradient(top, #6598be, #3472a2);
+	background-image: -moz-linear-gradient(top, #6598be, #3472a2);
+	background-image: -ms-linear-gradient(top, #6598be, #3472a2);
+	background-image: -o-linear-gradient(top, #6598be, #3472a2);
+	background-image: linear-gradient(top, #6598be, #3472a2);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#6598be', EndColorStr='#3472a2');
+}
+
+#listResult p {
+	padding: 0;
+	font-weight: bold;
+	font-size: 40px;
+	margin-top: 75px;
+}
+#listResult ul li {
+	font-weight: bold;
+	margin-bottom: 5px;
+}

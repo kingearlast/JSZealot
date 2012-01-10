@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<h1>Base Ball Game</h1>
+		<label for="inputNum">숫자를 입력하세요 : </label>
+		<input id="inputNum" type="text" size="3" maxlength="3" autofocus="true"/><br/>
+		<label>시도횟수 : <span id="tryCount" class="counting"></span></label>
+		<ul>
+			<li>스트라이크 : <span id="strikeCount" class="counting"></span></li>
+			<li>볼 : <span id="ballCount" class="counting"></span></li>
+		</ul>
+		<div id="reloadArea"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	// nameSpace Start
+	var BaseBallGame = {
+		// Service Start
+		baseBallService : {
+			countObj : {
+				tryCount : 0,
+				strikeCount : 0,
+				ballCount : 0
+			},
+			randomNumberArr : [],
+			
+			initRandomNumber : function(){
+				for ( var i = 0; i < 3; i++ ){
+					var randomNumber = Math.floor(Math.random() * 10);
+					this.randomNumberArr.push(randomNumber);
+				}
+				console.info( '생성된 숫자 3자리 : ' + this.randomNumberArr );
+			},
+			
+			validateNumber : function(inputValue){
+				if( isNaN(inputValue) ){
+					throw new Error('숫자값을 입력하세요');
+				}else if( inputValue.length < 3 ){
+					throw new Error('세자리 숫자를 입력하세요');
+				}else{
+					return this.countingNumber(inputValue);
+				}
+			},
+			
+			countingNumber : function(inputValue){
+				this.initCountObj();
+				for ( var i = 0; i < inputValue.length ; i++ ){
+					for ( var j = 0; j < this.randomNumberArr.length; j++ ){
+						if ( i == j ){
+							if ( inputValue.charAt(i) == this.randomNumberArr[j] ){
+								this.countObj.strikeCount++;
+								break;	
+							}
+						}else{
+							if ( inputValue.charAt(i) == this.randomNumberArr[j] ){
+								this.countObj.ballCount++;
+								break;
+							}
+						}
+					}
+				}
+				this.countObj.tryCount++;
+				return this.countObj;
+			},
+			
+			initCountObj : function(){
+				this.countObj.strikeCount = 0;
+				this.countObj.ballCount = 0;
+			}
+		},
+		// Service End
+		
+		//Controller Start
+		baseBallController : {
+			addEvent : function(baseBallService, baseBallViewResolver){
+				var inputElement = document.getElementById('inputNum');
+				
+				inputElement.addEventListener('keydown',function(event){
+					if (event.keyCode == 13){
+						try{
+							var countObj = baseBallService.validateNumber(inputElement.value);
+							if ( countObj.tryCount == 10 || countObj.strikeCount == 3 ){
+								return baseBallViewResolver.tryEndView(countObj, arguments.callee);
+							}
+							baseBallViewResolver.updateView(countObj);
+							baseBallViewResolver.clearInputElement();	
+						}catch(e){
+							alert(e.message);
+							baseBallViewResolver.clearInputElement();
+						}
+					}
+				});
+			}
+		},
+		//Controller End
+		
+		// ViewResolver Start
+		baseBallViewResolver : {
+			tryCount : document.getElementById('tryCount'),
+			strikeCount : document.getElementById('strikeCount'),
+			ballCount : document.getElementById('ballCount'),
+			inputElement : document.getElementById('inputNum'),
+			
+			updateView : function(countObj){
+				this.tryCount.innerHTML = countObj.tryCount;
+				this.strikeCount.innerHTML = countObj.strikeCount;
+				this.ballCount.innerHTML = countObj.ballCount;
+			},
+			
+			clearInputElement : function(){
+				this.inputElement.value = '';
+			},
+			
+			tryEndView : function(countObj, callee){
+				if ( countObj.tryCount == 10 ){
+					alert('GAME OVER!');
+					this.updateView(countObj);
+					this.inputElement.removeEventListener('keydown', callee);
+					this.addReloadBtn();	
+				}
+				if ( countObj.strikeCount == 3 ) {
+					alert('SUCCESS!');
+					this.updateView(countObj);
+					this.inputElement.removeEventListener('keydown', callee);
+					this.addReloadBtn();
+				}
+			},
+			
+			addReloadBtn : function(){
+				var reloadBtn = document.createElement('button');
+				reloadBtn.innerHTML = '재실행';
+				var reloadArea = document.getElementById('reloadArea');
+				reloadArea.appendChild(reloadBtn);
+				document.getElementsByTagName('button')[0].onclick = function(){
+					location.reload();
+				};
+			}
+		}, // ViewResolver End
+		
+		// This is Main ..
+		startGame : function(){
+			document.getElementById('inputNum').value = '';
+			
+			var service = this.baseBallService;
+			var viewResolver = this.baseBallViewResolver;
+			var controller = this.baseBallController;
+			
+			service.initRandomNumber();
+			controller.addEvent(service, viewResolver);
+		}
+		
+	}; // nameSpace End
+	
+	
+	
+	window.onload = function(){
+		BaseBallGame.startGame();
+	}
+	
+</script>

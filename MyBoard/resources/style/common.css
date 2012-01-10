@@ -1,0 +1,67 @@
+* { margin: 0; padding: 0;}
+.wrap { margin: 0; padding: 0;}
+
+body { 
+	width: 900px;
+	margin: 0 auto; 
+	font-size: 12px;
+}
+
+ul li {
+	list-style: none;
+}
+
+.headerWrap {
+	padding: 10px;
+}
+
+.headerWrap, .bodyWrap {
+	border: 1px solid #ff0000;
+	margin: 10px 0px;
+}
+
+.naviWrap, .contWrap {
+	height: 600px;
+}
+
+.naviWrap {
+	width: 25%;
+	float: left;
+}
+
+.contWrap {
+	width: 75%;
+	float: left;
+}
+
+.footerWrap {
+	height: 10%;
+	clear: both;
+}
+
+.inner {
+	margin: 10px;
+	padding: 5px;
+	border: 1px solid #ff0000;
+}
+
+.login {
+	height: 20%;
+}
+
+.menu {
+	padding-left: 30px;
+	height: 35%;
+}
+
+.ad {
+	height: 30%;
+}
+
+.notice, .board {
+	height: 45%;
+}
+
+.message {
+	color: red;
+}
