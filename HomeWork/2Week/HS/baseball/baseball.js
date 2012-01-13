@@ -33,7 +33,8 @@ function makeRandNumber() {
 function inputNumber() {
 	$('#content input[type=text]').each(function(i) {// 사용자 입력 값 얻기
 		nInputPeo[i] = $(this).val();
-		i++;
+		alert(i)
+		i++;   /** 필요없음 계산된 index 가  i 로 들어오는 것임**/
 	});
 	
 	if(nInputPeo[0]=="" || nInputPeo[1]=="" || nInputPeo[2]=="") {
@@ -53,7 +54,7 @@ function inputNumber() {
 	$('#content input[type=text]:first').focus();
 }
 
-function playGame() {	
+function playGame() {	/** 함수 하나에 너무 많은 기능이 몰려있음, 좀더 모듈화 하면 좋을 것 같음 **/
 	var ball=0, strike=0;
 	playCount++;
 	for(var i=0; i<nInputPeo.length; i++) {

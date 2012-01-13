@@ -10,10 +10,12 @@
 			var outcome = [];
 			
 			window.onload = function(){				
+				/** 랜덤 값 생성 및 중복 체크를 필요이상으로 복잡하게 구현함 -_- **/
 				outcome[0] = Math.ceil(Math.random()*9);
 				check_overlap(1);
 				check_overlap(2);
-	
+				
+				
 				function check_overlap(toChangeN) {
 					var newO = Math.ceil(Math.random()*9);
 					
@@ -35,7 +37,7 @@
 				innerHTML(check());
 				
 				function input_num() {
-					var loadData = function(ID) {
+					var loadData = function(ID) { /** 여기서만 함수로 만들게 아니라 좀더 범용적으로 사용가능한 함수로 만드는게 나아보임 **/
 						return document.getElementById(ID).value;
 					}
 					
@@ -58,7 +60,7 @@
 							if(outcome[i] == inputs[j] && i==j){
 								strikeBall[0]++;
 								confirmS[i] = i;
-							} else if(outcome[i] == inputs[j] && i!=j && i!=confirmS){
+							} else if(outcome[i] == inputs[j] && i!=j && i!=confirmS){ /** i != confirmS 의도한거 맞음? **/
 								strikeBall[1]++;
 							}
 						};

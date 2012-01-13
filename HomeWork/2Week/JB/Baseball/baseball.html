@@ -5,11 +5,17 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>야구 게임</title>
 		<script language="javascript">
-			var SecretNumber = [ 'A'];
-			var count=0;;
+			/*
+			 * 너무 꼼꼼하지 못함 네이밍도 안맞음 (변수명은 소문자로 시작)
+			 * 함수 모듈화가 적절하지 않음
+			 */
+			
+			
+			var SecretNumber = [ 'A']; /** 'A' 앞에 공백은 뭐냐 **/
+			var count=0;;	/** ;; 는 뭐냐 **/				
 			
 			function MakeNumber(){
-				count =0;
+				count =0;	
 				for(var i=0; i<3; i++)
 				{
 					SecretNumber[i] = Math.ceil(Math.random() * 9);
@@ -26,7 +32,8 @@
 			document.getElementById("S").value = "";
 			document.getElementById("Result").value = "";
 			alert('게임시작합니다.');
-			alert('숫자를 입력하여주세요(중복숫자 안됨)');	
+			alert('숫자를 입력하여주세요(중복숫자 안됨)');
+			console.log(SecretNumber);  /** kingear 추가 **/	
 			}
 			
 			function check() {
@@ -40,9 +47,10 @@
 					alert('게임시작을 먼저 누르시기 바랍니다.');
 					return;
 				}
-				
+				/** 들여씌기 이상함 **/
 					for(var i=0 ,j=100 , k=1000 ; i<3; j /=10,i++ ,k/=10)
 				{
+					/** 더 좋은 방법들이 많음 **/
 					identify.CheckNumber[i] = ((identify.TotalNumber %k)-(identify.TotalNumber % j))/j;
 				
 				}

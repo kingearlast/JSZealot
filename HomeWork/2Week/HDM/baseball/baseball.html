@@ -51,7 +51,7 @@
 				this.initCountObj();
 				for ( var i = 0; i < inputValue.length ; i++ ){
 					for ( var j = 0; j < this.randomNumberArr.length; j++ ){
-						if ( i == j ){
+						if ( i == j ){		/** if 를 줄일 수 있음 - && 을 사용하거나 중첩된 if 하나에서 해결 가능 **/
 							if ( inputValue.charAt(i) == this.randomNumberArr[j] ){
 								this.countObj.strikeCount++;
 								break;	
@@ -116,7 +116,7 @@
 				this.inputElement.value = '';
 			},
 			
-			tryEndView : function(countObj, callee){
+			tryEndView : function(countObj, callee){  /** alert 에 전달하는 문자열을 제외한 코드 중복 **/
 				if ( countObj.tryCount == 10 ){
 					alert('GAME OVER!');
 					this.updateView(countObj);

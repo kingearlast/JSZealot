@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<div align="center">
+			야구 게임 입니다.
+			<br>
+			중복되지 않은 숫자 0~9까지 입력 하세요.
+			<br>
+			<form name="bbgame">
+				<input type="text" size="1" id="num1">
+				<input type="text" size="1" id="num2">
+				<input type="text" size="1" id="num3">
+				<input type="button" size="1" value="입력" onclick="click()">
+				<br>
+			</form>
+	</body>
+</html>
+	<script language="javascript">
+	var comp = new Array(3);
+	var user = new Array(3);
+	function click() {
+		user[0] = document.getElementById("num1");
+		user[1] = document.getElementById("num2");
+		user[2] = document.getElementById("num3");
+		
+		if(!jungbok(user)){
+			alert("중복된 값이 있습니다.");
+		}
+		makeNumb();
+		comp();
+	}
+
+	function makeNumb() {// 랜덤하게 숫자 생성
+		for(var i = 0; i < comp.length; i++) {
+			comp[i] = Math.ceil(Math.random() * 9);
+		}
+		if(!jungbok(comp)) {
+			makeNumb();
+		}
+	}
+
+	function jungbok(num) { // 중복 검사
+		var temp = new Array(3);
+		for(var i = 0; i < 3; i++) {
+			temp[i] = num[i];
+		}
+		temp.sort(); // 정렬
+		for(var j = 0; j < temp.length - 1; j++) {
+			var m = j + 1;
+		}
+		if(temp[j] == temp[m]) {
+			return false;
+		}
+		temp = null; // 다음번 실행을 위해 초기화
+		return true;
+	}
+	
+	function comp() { // 두수 비교
+		var Scounter = 0;
+		var Bcounter = 0;
+		for(var i=0;i<3;i++){
+			if(comp[i] == user[i]){
+				Scounter++;
+			}
+		}
+		comp.sort();
+		user.sort();
+		for(var i=0;i<3;i++){
+			if(comp[i] == user[i]) {
+				Bcounter++;				
+			}		
+		}
+		Bcounter -= Scounter;
+		if(Scounter==3){
+			alert("다맞추셧습니다.!");
+		} else if(Scounter == 0 && Bcounter ==0) {
+			alert("아웃!");
+		}
+		else {
+			alert(Scounter+"스트라이크"+Bcounter+"볼")
+		}
+	}
+</script>
