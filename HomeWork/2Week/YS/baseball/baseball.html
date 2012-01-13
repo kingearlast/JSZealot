@@ -69,6 +69,7 @@
 					return strikeBall;
 				}
 				
+				/** HTML 을 만드는 부분과 승리 체크를 하는 기능을 나누는게 좋아보임 **/
 				function innerHTML(strikeBall) {
 					document.getElementById("gameTable").innerHTML +=
 						"<tr> <th>" + 'turn ' + turnCnt + "</th>" +
