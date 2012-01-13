@@ -5,6 +5,11 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>New Web Project</title>
 		<script language="javascript">
+		/*
+		 * 변수 및 함수 네이밍 - 의미를 잘나타내지 못함, 카멜 표기법과 _ 표기법을 동시에 사용 
+		 * 
+		 * 
+		 */
 			var comp = new Array(3);
 			var user = new Array(3);
 			function click1() {
@@ -13,7 +18,7 @@
 				user[1] = document.getElementById("num2").value;
 				user[2] = document.getElementById("num3").value;
 
-				if(!jungbok(user) || !is_ok()) {
+				if(!jungbok(user) || !is_ok()) { /** 입력 오류이면 프로그램을 멈추고 다시 입력받아야지 그대로 진행함 **/
 					alert("값을 잘못입력 하셧습니다.");
 				}
 				makeNumb();
@@ -36,13 +41,13 @@
 					}
 				}
 				temp = null;
-				// 다음번 실행을 위해 초기화
+				// 다음번 실행을 위해 초기화     /** 초기화 왜함? **/
 				return true;
 			}
 
 			function comp123() {// 두수 비교
 
-				var Scounter = 0;
+				var Scounter = 0;  /** 명명법이 이상함 **/
 				var Bcounter = 0;
 				for(var i = 0; i < 3; i++) {
 					if(comp[i] == user[i]) {
@@ -70,9 +75,10 @@
 				for(var i = 0; i < comp.length; i++) {
 					comp[i] = Math.ceil(Math.random() * 9);
 				}
-				if(!jungbok(comp)) {
+				if(!jungbok(comp)) {  /** 하나라도 중복되면 다시 처음부터 만들어????? 불필요한 재귀함수 사용 **/
 					makeNumb();
 				}
+				console.log(comp); /** kingear 추가 **/
 			}
 			function is_ok() {
 				for(i=0;i<3;i++) {
