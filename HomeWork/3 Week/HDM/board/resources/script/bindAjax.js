@@ -98,7 +98,7 @@ function idCheckCallback(){
 	
 	$('#id').attr('readonly','readonly');
 	$('#idInputBtn').click(function(event){
-		window.showModalDialog('/member/idDuplicateCheckForm.php', $('#id'),'dialogWidth:400px; dialogHeight:50px; dialogLeft:100px; dialogTop:100px; resizable:no; status:no; scroll:no; help:no; unadorned:no; edge:sunken');
+		window.showModalDialog('/board/member/idDuplicateCheckForm.php', $('#id'),'dialogWidth:400px; dialogHeight:50px; dialogLeft:100px; dialogTop:100px; resizable:no; status:no; scroll:no; help:no; unadorned:no; edge:sunken');
 		event.preventDefault();
 	});
 	
