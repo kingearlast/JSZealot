@@ -32,7 +32,7 @@
 		</div>
 	</div>
 	<div class="search">
-		<form action="/board/search.php" method="get">
+		<form action="/board/board/search.php" method="get">
 			<fieldset>
 				<select name="category">
 					<option>전체</option>
@@ -66,11 +66,11 @@
 		<div id="content" class="content">
 			<? require_once($path."/board/list.php"); ?>
 		</div>
-		<p><a id="boardLink" href="/index.php">글목록</a></p>
+		<p><a id="boardLink" href="/board/board/index.php">글목록</a></p>
 		<?
 			if ( $_SESSION["isLogin"]){
 			?> 
-				<p><a id="writeBoardLink" href="/board/saveForm.php?id=<?= $_SESSION["id"]; ?>">글쓰기</a></p>
+				<p><a id="writeBoardLink" href="/board/board/saveForm.php?id=<?= $_SESSION["id"]; ?>">글쓰기</a></p>
 			<?		
 			}
 		?>		
