@@ -4,7 +4,7 @@
 	$host = 'localhost';
 	$username = 'root';
 	$password = 'apmsetup';
-	$dbname = 'myhomepage';
+	$dbname = 'zeus';
 	
 	$link = mysql_connect($host, $username, $password);/*
 	if(!$link) {
