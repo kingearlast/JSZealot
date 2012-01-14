@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>회원가입</title>
+		<script language="JavaScript"></script>
+	</head>
+	<body>
+		<h1 ><font face="휴먼엑스포" color="gray" >&nbsp;&nbsp;&nbsp;&nbsp;회      원    가    입</font></h1>
+		<a href="Login.html">홈으로</a>
+		<form action="Join.php" method="post">
+		<table border="1">
+			<tr>
+				<th colspan="2" align="center">기    본    정    보</th>
+			</tr>
+			<tr>
+				<td>아이디 <font color="red">*</font></td>
+				<td>
+				<input type="text"  name="id" />
+				</td>
+			</tr>
+			<tr>
+				<td>비밀번호 <font color="red">*</font></td>
+				<td>
+				<input type="text" name="password" />
+				</td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인<font color="red">*</font></td>
+				<td>
+				<input type="text" name="passwordcheck" />
+				</td>
+			</tr>
+			<tr>
+				<td>이름 <font color="red">*</font></td>
+				<td>
+				<input type="text" name="name" />
+				</td>
+			</tr>
+			<tr>
+				<td>주민등록번호 <font color="red">*</font></td>
+				<td>
+				<input type="text" name="social_security_number" id="social_security_number" value="-없이입력하여주십시오." onclick="cal()" />
+				</td>
+			</tr>
+			<tr>
+				<td>닉네임 <font color="red">*</font></td>
+				<td>
+				<input type="text" name="nickname" />
+				</td>
+			</tr>
+			<tr>
+				<td>이메일 주소 <font color="red">*</font></td>
+				<td>
+				<input type="text" name="email" />
+				</td>
+			</tr>
+			<tr>
+				<td>전화번호 </td>
+				<td>
+				<input type="text" name="phone" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+				<input type="submit"  value="등록" />
+				<input type="button" value="취소" />
+				</td>
+			</tr>
+		</table>
+		</form>
+	</body>
+</html>
+
+<script language="JavaScript">
+
+			function cal()
+			{						
+				document.getElementById("social_security_number").value = "";	
+			}
+			
+			
+		</script>
