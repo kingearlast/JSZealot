@@ -2,7 +2,7 @@
 	$host = "localhost";
 	$userName = "root";
 	$dbPassword = "apmsetup";
-	$dbName = "myboard";
+	$dbName = "hdm";
 	$connection = mysql_connect($host, $userName, $dbPassword);
 	
 	if (!$connection) {
