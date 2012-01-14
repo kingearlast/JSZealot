@@ -1,7 +1,7 @@
 <?
 	session_start();
 	
-	$path = $_SERVER[DOCUMENT_ROOT];
+	$path = $_SERVER[DOCUMENT_ROOT]."/board";
 	extract($_POST);
 	
 	require_once($path."/db/database.php");

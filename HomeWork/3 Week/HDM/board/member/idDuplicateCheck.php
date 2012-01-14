@@ -1,5 +1,5 @@
 <?
-	$path = $_SERVER[DOCUMENT_ROOT];
+	$path = $_SERVER[DOCUMENT_ROOT]."/board";
 	require_once($path."/db/database.php");
 	$checkId = $_GET["id"];
 	// ID 중복 검사

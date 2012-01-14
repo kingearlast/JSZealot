@@ -1,5 +1,5 @@
 <?
-	$path = $_SERVER[DOCUMENT_ROOT];
+	$path = $_SERVER[DOCUMENT_ROOT]."/board";
 	session_start();
 ?>
 
@@ -9,17 +9,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Board</title>
-	<link type="text/css" href="/resources/style/main.css" rel="stylesheet"></link>
-	<script type="text/javascript" src="/resources/lib/jquery-1.6.2.js"></script>
-	<script type="text/javascript" src="/resources/lib/json2.js"></script>
-	<script type="text/javascript" src="/resources/script/formSubmit.js"></script>
-	<script type="text/javascript" src="/resources/script/bindAjax.js"></script>
+	<link type="text/css" href="./resources/style/main.css" rel="stylesheet"></link>
+	<script type="text/javascript" src="./resources/lib/jquery-1.6.2.js"></script>
+	<script type="text/javascript" src="./resources/lib/json2.js"></script>
+	<script type="text/javascript" src="./resources/script/formSubmit.js"></script>
+	<script type="text/javascript" src="./resources/script/bindAjax.js"></script>
 </head>
 <body>
 <div id="wrap">
 	<div class="header">
 		<div class="logo">
-			<a href="/"><img src="/resources/images/logo.png" alt="logo"/></a>
+			<a href="/"><img src="./resources/images/logo.png" alt="logo"/></a>
 		</div>
 		<div class="gnb">
 			<ul>

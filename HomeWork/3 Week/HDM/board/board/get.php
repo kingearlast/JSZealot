@@ -1,6 +1,6 @@
 <?
 	session_start();
-	$path = $_SERVER[DOCUMENT_ROOT];
+	$path = $_SERVER[DOCUMENT_ROOT] ."/board";
 	require_once($path."/db/database.php");
 	require_once($path."/db/models.php");
 	

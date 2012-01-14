@@ -1,7 +1,7 @@
 <?
 	@session_start();
 	extract($_POST);
-	$path = $_SERVER[DOCUMENT_ROOT];
+	$path = $_SERVER[DOCUMENT_ROOT]."/board";
 	require_once($path."/db/database.php");
 	
 	$sql = "DELETE FROM MEMBER where id = '$id'";
