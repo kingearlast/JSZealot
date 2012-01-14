@@ -7,4 +7,3 @@
 	$result = mysql_query($query);
 	header('Location: ./boardList.php');
 ?>
-aa
