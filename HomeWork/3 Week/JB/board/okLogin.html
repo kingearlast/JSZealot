@@ -1,0 +1,31 @@
+
+		<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		
+		<title>New Web Project</title>
+	</head>
+
+	<body>
+
+		<table border="1" width="400">
+			<tr align="center" >
+				<td width="57%"><?php  @session_start(); echo $_SESSION['nickname']; ?>님 환영합니다.	</td>
+				<td><form action="LogOut.php" method="post"><input type="submit" value="로그아웃" /></form>
+					<form action="ChangeInformation.php" method="post"><input type="submit" value="회원정보변경" /></form>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><a href="Board.html"><font face="휴먼엑스포" size="5">게시판 go!</font></a></td>
+			</tr>
+			
+		</table>
+		
+	
+	</body>
+				
+		
+</html>
+

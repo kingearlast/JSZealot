@@ -1,0 +1,74 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>게시판</title>
+	</head>
+	<body>
+		<h1 ><font face="휴먼엑스포"color="gray"><b>&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;
+		
+			Board (게시판)</b></font></h1>
+					<?php 
+		@session_start();
+		if($_SESSION['id']!=NULL)
+		{
+			echo "<a href='okLogin.html'>홈으로</a>";
+		}
+		else{
+			echo "<a href='Login.html'>홈으로</a>";
+		}	
+?>
+		<table border="1" width="800">
+			<thead align="center">
+			<tr>
+				<th>번호</th>
+				<th>제목</th>
+				<th>글쓴이</th>
+				<th>날짜</th>
+				<th>조회수</th>
+			</tr>
+			</thead>
+			<tbody id="listBody">
+				<tr>
+					<?php
+	ini_set("display_errors", "1");
+	$link = mysql_connect('localhost', 'root', 'apmsetup');
+	$db_selected = mysql_select_db('myboard', $link);
+	
+	$Board_information = "select * from `board` order by seq desc";
+	$result = mysql_query($Board_information);
+	
+	while ($row = mysql_fetch_array($result)) {
+							
+
+				echo '<tr><td>'.$row[seq].'</td>'.
+					'<td><a href="ReadBoard.php?seq='.$row[seq].'">'.$row[title].'</a>'.'</td>'.
+					'<td>'.$row[write_id].'</td>'.
+					'<td>'.$row[write_day].'</td>'.
+					'<td>'.'10000'.'</td>'.'</tr>';	
+				
+
+
+		
+			}
+
+?>
+			
+				</tr>
+			</tbody>
+			<tr>
+				<td align="center"><input type="button" value="목록"/></td>
+				<td colspan="3"></td>
+				<td align="center"> 
+					<form action="WriteBoard.html" method="get" accept-charset="utf-8">
+						  <input type="submit" value="글쓰기"/>
+					</form>
+				 </td>
+			</tr>
+		</table>
+	</body>
+</html>
