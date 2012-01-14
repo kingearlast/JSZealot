@@ -29,6 +29,6 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2"><a href="/">확인 / 홈으로...</a></td>
+		<td colspan="2"><a href="/board">확인 / 홈으로...</a></td>
 	</tr>
 </table>			

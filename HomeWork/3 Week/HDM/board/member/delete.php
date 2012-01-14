@@ -11,7 +11,7 @@
 	
 	if ( $count > 0 ){
 		session_destroy();
-		header("location:/index.php");
+		header("location:/board/index.php");
 		exit;
 	}else {
 		echo require_once($path."/member/updateForm.php");	

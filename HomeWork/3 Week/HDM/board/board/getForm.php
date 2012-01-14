@@ -26,13 +26,13 @@
 	if ( $_SESSION["isLogin"] && ($board->writerId == $_SESSION["id"]) ){
 	?>
 	<tr>
-		<th colspan="8"><a id="updateBoardFormLink" href="/board/updateForm.php?seq=<?= $board->seq; ?>">수정</a> || <a id="deleteBoardLink" href="/board/delete.php?seq=<?= $board->seq; ?>">삭제</a></th>
+		<th colspan="8"><a id="updateBoardFormLink" href="/board/board/updateForm.php?seq=<?= $board->seq; ?>">수정</a> || <a id="deleteBoardLink" href="/board/board/delete.php?seq=<?= $board->seq; ?>">삭제</a></th>
 	</tr>
 	<?		
 	}
 	?>
 	<tr>
-		<th colspan="8"><a href="/index.php">홈으로..</a></th>
+		<th colspan="8"><a href="/board/index.php">홈으로..</a></th>
 	</tr>
 	
 </table>

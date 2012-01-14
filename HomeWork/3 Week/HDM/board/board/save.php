@@ -16,7 +16,7 @@
 	
 	if ( $count > 0 ){
 		$lastSeq = $row["seq"];
-		header("location:/board/get.php?seq=$lastSeq");
+		header("location:/board/board/get.php?seq=$lastSeq");
 	}else{
 		echo require_once($path."/board/saveForm.php");
 	}

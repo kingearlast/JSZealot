@@ -18,5 +18,5 @@
 		$_SESSION["id"] = $id;
 		$_SESSION["name"] = $row["name"]; 
 	}
-	header("location:/index.php");
+	header("location:/board/index.php");
 ?>

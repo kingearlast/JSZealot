@@ -1,4 +1,4 @@
-<form action="/board/save.php" method="post">
+<form action="/board/board/save.php" method="post">
 	<fieldset>
 		<input name="id" type="hidden" value="<?= $_GET["id"]; ?>"/>
 		<input name="category" type="hidden"/>

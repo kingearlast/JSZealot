@@ -1,4 +1,4 @@
-<form action="/member/save.php" method="post">
+<form action="/board/member/save.php" method="post">
 	<fieldset>
 		<table border="1" summary="회원가입 테이블">
 			<tr>

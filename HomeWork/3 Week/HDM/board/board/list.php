@@ -56,7 +56,7 @@
 	?>
 	<tr>
 		<td><?= $board->seq; ?></td>
-		<td><a class="boardList" href="/board/get.php?seq=<?= $board->seq;?>"><?= $board->title; ?></a></td>
+		<td><a class="boardList" href="/board/board/get.php?seq=<?= $board->seq;?>"><?= $board->title; ?></a></td>
 		<td><?= $board->writerId; ?></td>
 		<td><?= substr($board->regDate, 0, 10); ?></td>
 		<td><?= $board->visitCount; ?></td>
@@ -73,7 +73,7 @@
 	for ( $i = $page->startUnitPage; $i <= $page->endUnitPage; $i++ ){
 	?>
 		<span>
-			<a class="pageLink" href="/board/list.php?pageIndex=<?= $i; ?>"><?= "   " . $i . "   "; ?></a>
+			<a class="pageLink" href="/board/board/list.php?pageIndex=<?= $i; ?>"><?= "   " . $i . "   "; ?></a>
 		</span>
 		
 	<?

@@ -15,7 +15,7 @@
 	
 ?>
 
-<form action="/member/update.php" method="post" >
+<form action="/board/member/update.php" method="post" >
 	<fieldset>
 		<table border="1" summary="회원가입 테이블">
 			<tr>
@@ -64,7 +64,7 @@
 		</table>
 	</fieldset>
 </form>
-<form action="/member/delete.php" method="post">
+<form action="/board/member/delete.php" method="post">
 	<fieldset>
 		<!-- ID 는 SESSION 값으로 조회 -->
 		<input name="id" type="hidden" value="<?= $member->id ?>" />

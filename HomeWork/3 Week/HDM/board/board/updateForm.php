@@ -10,7 +10,7 @@
 	$row = mysql_fetch_array($result);
 	$board = setBoard($row);
 ?>
-<form action="/board/update.php" method="post">
+<form action="/board/board/update.php" method="post">
 	<fieldset>
 		<input name="seq" type="hidden" value="<?= $board->seq; ?>"/>
 		<input name="title" type="text" size="50" maxlength="50" placeholder="글제목을 입력하세요" autofocus="true" value="<?= $board->title; ?>"/><br/>
@@ -18,4 +18,4 @@
 		<input type="submit" value="수정" />
 	</fieldset>
 </form>
-<span><a href="/index.php">홈으로..</span>
+<span><a href="/board/index.php">홈으로..</span>
