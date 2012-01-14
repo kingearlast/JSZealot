@@ -2,7 +2,7 @@
 	session_start();
 	ini_set("display_errors", "1");
 	$link = mysql_connect('localhost', 'root', 'apmsetup');
-	$db_selected = mysql_select_db('myboard', $link);
+	$db_selected = mysql_select_db('jb', $link);
 	
 	if($_SESSION['write_id'] != $_SESSION['id'])
 	{
