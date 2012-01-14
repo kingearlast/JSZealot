@@ -1,0 +1,19 @@
+*{}
+
+body {
+	width: 740px;
+	margin: 10px auto;
+	padding: 20px 30px;
+	border: 3px dashed gray;
+}
+
+ul { list-style: none; }
+
+li { display: inline; }
+
+#contents {
+	width: 670px;
+	padding: 0px 25px 25px;
+	border: 8px solid;
+	border-color: skyblue orange;
+}
