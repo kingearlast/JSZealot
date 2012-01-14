@@ -2,7 +2,7 @@
 $host = 'localhost';
 $user = 'root';
 $password = 'apmsetup';
-$dbname = 'ys_board';
+$dbname = 'ys';
 
 ini_set("display_errors", "1");
 $connect = mysql_connect($host, $user, $password);
