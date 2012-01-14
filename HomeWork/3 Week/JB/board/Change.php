@@ -3,7 +3,7 @@
 	@extract($_POST);
 	ini_set("display_errors", "1");
 	$link = mysql_connect('localhost', 'root', 'apmsetup');
-	$db_selected = mysql_select_db('myboard', $link);
+	$db_selected = mysql_select_db('jb', $link);
 	
 	//$Board_information = 'delete from `board` where seq ='.$_SESSION['seq'];
 	
