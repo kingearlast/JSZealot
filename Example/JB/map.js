@@ -18,7 +18,7 @@ window.onload = function drawMap() {
 	})
 	daum.maps.event.addListener(map, "dragend", function() {
 		var center = map.getCenter();
-		document.getElementById("message").innerHTML = "latitude : " + center.getLat() + "<br />longitude: " + center.getLng();
+	$('#message').html("latitude : " + center.getLat() + "<br />longitude: " + center.getLng());
 	});
 }
 function searchStart() {
