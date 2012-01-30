@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko" lang="ko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>고객정보</title>
+		<link href="style/contacts.css" rel="stylesheet" type="text/css"></link> 
+		<script src="http://code.jquery.com/jquery-1.7.1.js" type="text/javascript"></script>
+		<script type="text/javascript" src="./lib/json2.js"></script>
+	</head>
+	<body>
+		<h1>고객정보</h1>
+		<h2>고객정보 입력</h2>
+		<ul id="inputListArea">
+			<li>이름  : <input type="text" id="name" value="" size="10" maxlength="10"/><span class="error">이름이 누락되었습니다.</span></li>
+			<li>생년월일  : <input type="text" id="birthNum" value="" size="11" maxlength="6" placeholder="(-없이 입력)"/><span class="error">생년월일형식이옳바르지않습니다.</span></li>
+			<li>성별  : 
+				<select id="sex">
+					<option value="M">남자</option>
+					<option value="F">여자</option>
+				</select>
+			</li>
+			<li>전화번호 : <input type="text" id="telNum" value="" size="11" maxlength="11" placeholder="(-없이 입력)"/><span class="error">전화번호형식이 옳바르지않습니다.</span></li>			
+			<li><input type="button" id="saveBtn" value="입력"/></li>			
+		</ul>
+		
+		<h2>고객정보 리스트</h2>
+		<h3>검색</h3>
+		<ul>
+			<li>이름 : <input type="text" id="schName" /><input type="button" id="schBtn" value="검색"/></li>
+		</ul>
+		<!-- <input type="button" id="schAllBtn" value="전체 보기"/> -->
+		<input type="button" id="deleteAllBtn" value="전체 삭제"/>
+		<h3>리스트</h3>
+		<table width="800" border="1">
+			<caption>검색결과수 = <span id="totalCnt">0</span></caption>
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			<col width="200" />
+			
+			<thead>
+				<tr>
+					<th>순번</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>성별</th>
+					<th>전화번호</th>					
+				</tr>
+			</thead>
+			<tbody id="listBody">
+				
+			</tbody>
+		</table>
+	</body>
+	
+	<script type="text/javascript">
+	/*
+	* document.getElementById("name").value = 30;  id 가 num01 인 HTML 요소에 값 넣기 
+	* document.getElementById("name").value;  id 가 num01 인 HTML 요소의 값 가져오기	 
+	* document.getElementById("name").innerHTML = "<tr><td> data </td></tr>" id 가 name 인 요소안에 새로운 HTML 구조 넣기
+	* 버튼에 이벤트 다는 방법  <input type="button" id="totalBtn" value="전체 보기" onclick="함수호출();"/> 
+	* 이벤트를 달고 싶은 요소에 onclick 인라인 이벤트를 작성한다. ( onclick="함수명()" )
+	*/ 
+	$(document).ready(function(){
+		initBind();
+	});
+	
+	
+	function initBind(){
+		
+		// Input 창과 에러리스트 셋팅 객체 UserData 초기화
+		initErrorInfo();
+		clearInput();
+		
+		// 각 버튼에 대한 이벤트 바인딩
+		$('#saveBtn').click(saveUser);
+		$('#schBtn').click(findUser);
+		$('#deleteAllBtn').click(function(){
+			var deleteAll = confirm('모든 정보를 삭제하시겠습니까?');
+			if ( deleteAll ){
+				localStorage.clear(); // or  localStorage.removeItem('userList');	
+				$('#schName').val('');
+				findUser();
+			}
+		});
+		
+		// onblur 시 validation 체크
+		$('#name').blur(nameCheck);
+		$('#birthNum').blur(birthNumCheck);
+		$('#telNum').blur(telNumCheck);
+		
+	}
+	
+	function clearInput(){
+		$('#name').val('');
+		$('#birthNum').val('');
+		$('#telNum').val('');
+		$('#schName').val('');
+	}
+	
+	// 사용자 정보 입력후 입력버튼을 누르면 내부적으로 storeUser를 호출하여 User 정보를 localStorage에 저장한다.
+	function saveUser(){
+		try {
+			validate();	
+			storeUser();
+			findUser();
+			initErrorInfo();
+			clearInput();
+		}catch(e){
+			// validate 내부에서 검사하는 에러리스트에 에러가 하나라도 있으면 예외를 던진다. 
+			return alert(e.message);
+		}
+	}
+	
+	function makeUser(){
+		// user 의 객체 정보
+		return  {
+			index : '',
+			name : $('#name').val(),
+			birthNum : $('#birthNum').val(),
+			sex : $('#sex').val(),
+			telNum : $('#telNum').val()
+		};
+	}
+	
+	function storeUser(){
+		
+		var user = makeUser();
+		var items = localStorage.getItem('userList');
+		var userList = [];
+		if ( items ){
+			userList = JSON.parse(items);
+			user.index = userList.length + 1;
+			userList.push(user);
+		}else{
+			user.index = 1;
+			userList.push(user);
+		}
+		localStorage.setItem('userList', JSON.stringify(userList));
+	}
+	
+	// 검색 or 전체 보기 버튼 클릭시 localStorage 에 저장된 User 리스트를 불러와 해당 리스트를 화면에 동적으로 삽입한다.
+	function findUser(){
+		var schName = $('#schName').val();
+		try {
+			var userList = loadUser(schName); // userList Array 데이터 로드
+			$('#totalCnt').html(userList.length); // 총 갯수 삽입
+			var userListHtml = makeUserListRow(userList); // 로드된 userList 로 Html 작성
+			$('#listBody').html(userListHtml);
+		}catch(err){
+			$('#totalCnt').text('0');
+			$('#listBody').html('');
+			alert(err.message);
+		}
+		$('#schName').val('');
+	}
+	
+	function loadUser(schName){
+		var items = localStorage.getItem('userList');
+		var emptyListError = '저장된 User가 없습니다.';
+		var notFoundUser = '찾는 User가 없습니다.';
+		
+		if ( items ){
+			var userList = JSON.parse(items); // 저장된 userList문자열을 array 객체로 변환
+			if ( !schName ){
+				return userList;	
+			}else{ // 검색어 입력란에 찾고자 하는 이름을 입력 받은 경우 해당 이름에 대한 리스트만 반환
+				var findUserList = [];
+				$.each(userList, function(index, user){
+					if ( user.name == schName ){
+						findUserList.push(user);
+					}
+				});
+				
+				if ( findUserList.length < 1){
+					throw new Error(notFoundUser); // 찾고자 하는 이름과 일치하는 데이터가 없을 경우
+				}
+				return findUserList;
+			}
+		}else{
+			throw new Error(emptyListError); // 저장된 userList 데이터 자체가 없는 경우
+		}
+	}
+	
+	
+	// Html 만드는 함수
+	function makeUserListRow(userList){
+		var html = '';
+		$.each(userList, function(index, user){
+			html += '<tr>\n' 
+				+ '\t<td>' + user.index + '</td>\n'
+				+ '\t<td>' + user.name + '</td>\n'
+				+ '\t<td>' + user.birthNum + '</td>\n'
+				+ '\t<td>' + (user.sex == 'M'? '남자':'여자') + '</td>\n'
+				+ '\t<td>' + user.telNum + '</td>\n'
+				+ '</tr>\n';
+		});
+		return html;
+	}
+	
+	// validate 함수에서 errorCheckList 를 검사한다.
+	var errorCheckList = {
+		name : false,
+		birthNum : false,
+		telNum : false
+	};
+	
+	// 페이지 로드시 입력 양식 초기화
+	function initErrorInfo(){
+		$.each(errorCheckList, function(index , item){
+			item = false;
+		});
+		
+		$('.error').each(function(){
+			$(this).hide();
+		});
+	}
+	
+	function validate(){
+		$.each(errorCheckList, function(index , item){
+			if ( item == false ){
+				throw new Error('입력양식을 다시확인하세요.');
+			}
+		});
+	}
+	
+	/*
+	 *  ~ Check 함수 는 
+	 *  input 창에 데이터 입력 후 onblur 시마다 데이터를 검증하여 저장할 user객체를 셋팅한다.
+	 *  에러가 있는경우 input 양식 옆의 마크업을 붉은색으로 노출 시킨다.
+	 */
+	function nameCheck(){
+		var name = this.value;
+		if ( !name ){
+			showError(this, '이름이 누락되었습니다.');
+			errorCheckList.name = false;
+		}else {
+			hideError(this);
+			errorCheckList.name = true;
+		}
+	}
+	
+	function birthNumCheck(){
+		var birthNum = this.value;
+		if ( !birthNum ){
+			showError(this, '생년월일이 누락되었습니다.');
+			errorCheckList.birthNum = false;
+		}
+		else if ( birthNum.length < 6 || isNaN(birthNum) ){
+			showError(this, '생년월일 양식이 옳바르지 않습니다.');
+			errorCheckList.birthNum = false;
+		}else {
+			hideError(this);
+			errorCheckList.birthNum = true;
+		}	
+	}
+	
+	function telNumCheck(){
+		var telNum = this.value;
+		if ( !telNum ){
+			showError(this, '전화번호가 누락되었습니다.');
+			errorCheckList.telNum = false;
+		}	
+		else if ( telNum.length < 10 || isNaN(telNum) ){
+			showError(this, '전화번호 양식이 옳바르지 않습니다.');
+			errorCheckList.telNum = false;
+		}else {
+			hideError(this);
+			errorCheckList.telNum = true;
+		}
+	}
+	
+	function showError(element, errorMessage){
+		var errorSpan = element.nextSibling;
+		$(errorSpan).html(errorMessage).show();
+	}
+	
+	function hideError(element){
+		var errorSpan = element.nextSibling;
+		$(errorSpan).hide();
+	}
+	
+	</script>
+</html>

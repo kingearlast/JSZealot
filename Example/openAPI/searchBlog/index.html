@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://code.jquery.com/jquery-1.7.1.js" type="text/javascript"></script>
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<input type="text" id="searchInput"/>
+		<input type="button" id="searchBtn" />
+		<h1>BLOG</h1>
+		<ul id="searchList"></ul>
+		<span id="page"></span>
+	</body>
+	<script type="text/javascript">
+		$('#searchBtn').click(searchBlog);
+		
+		searchBlog.page = 1;
+		
+		function searchBlog() {
+			var searchKey = $('#searchInput').val();
+			var apiKey = "4568042a916d2bc29cdbd0eeba5ae1021e6d561a";
+			var requestURL = "http://apis.daum.net/search/blog";
+			requestURL += "?q="+searchKey;
+			requestURL += "&apikey="+apiKey;
+			requestURL += "&output=json";
+			requestURL += "&callback=foo";
+			requestURL += "&pageno="+searchBlog.page;
+			
+			this.script = document.createElement('script');
+	      	this.script.type ='text/javascript';
+	      	this.script.charset ='utf-8';		  
+	      	this.script.src = requestURL;	
+	      	document.getElementsByTagName('head')[0].appendChild(this.script);	
+		}
+		
+		function movePage(index) {
+			searchBlog.page = index;
+			searchBlog();
+		}
+		
+		function foo(data) {
+			var item = data.channel.item;
+			var pageNum = data.channel.pageCount;
+			var listHTML = '';
+			for(var i = 0; i < item.length; i++) {
+				var title = removeTag(item[i].title);
+				listHTML += "<li>"+title+"</li>";
+			}
+			$('#searchList').html(listHTML);
+			var pageAnchor = '';
+			for(i = 0; i < pageNum; i++) {
+				pageAnchor += '<a onclick="movePage('+i+')">'+i+'</a> ';
+			}
+			$('#page').html(pageAnchor);
+		}
+		
+		function removeTag(str) 
+		{
+			str = str.replace(/&amp;/g, "&");
+			str = str.replace(/&lt;/g, "<");
+			str = str.replace(/&gt;/g, ">");
+			return str;
+		}
+	</script>
+</html>

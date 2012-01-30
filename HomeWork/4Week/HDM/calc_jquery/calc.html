@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Calculation</title>
+		<script src="http://code.jquery.com/jquery-1.7.1.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<h1>Calculation</h1>
+		<input type="text" id="num01" placeholder="숫자입력"/>
+		<select id="operator">
+			<option value="add">+</option>
+			<option value="sub">-</option>
+			<option value="mul">*</option>
+			<option value="div">/</option>
+		</select>
+		<input type="text" id="num02"  placeholder="숫자입력"/>
+		<input type="text" id="result" disabled="true" placeholder="결과값"/>
+		<input id="calcBtn" type="button" value="계산수행"/>
+	</body>
+</html>
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+		$('#calcBtn').click(calc);
+	});
+	
+	var calcObj = {
+		add : function(num1, num2){ return num1 + num2; },
+		sub : function(num1, num2){ return num1 - num2; },
+		mul : function(num1, num2){ return num1 * num2; },
+		div : function(num1, num2){ return num1 / num2; }
+	};
+	
+	
+	function validate(num1, num2, operator){
+		
+		var errorCount = 0;
+		var errorMessage = '';
+		
+		if ( !num1.val() || isNaN(num1.val()) ){
+			num1.val('');
+			errorMessage = '숫자가아닙니다. 다시입력하세요.';
+			errorCount++;
+		}
+		if ( !num2.val() || isNaN(num2.val()) ){
+			num2.val('');
+			errorMessage = '숫자가아닙니다. 다시입력하세요.';
+			errorCount++;
+		}
+		else if ( operator == 'div' && num2.val() == 0 ){
+			num2.val('');
+			errorMessage = '0으로 나눌수 없습니다. 다시입력하세요.';
+			errorCount++;
+		}
+		if ( errorCount > 0 ){
+			throw new Error(errorMessage);
+		}
+	}
+	
+	function calc() {
+		
+		var num1Ele = $('#num01');
+		var num2Ele = $('#num02');
+		var operator = $('#operator').val();
+		var result = $('#result');
+		
+		try {
+			validate(num1Ele, num2Ele, operator);
+		}catch(error){
+			return alert( error.message );
+		}
+		
+		var num1 = num1Ele.val() - 0;
+		var num2 = num2Ele.val() - 0;
+		
+		var resultValue = calcObj[operator](num1, num2);
+		result.val(resultValue);
+	}
+	
+	
+</script>
+

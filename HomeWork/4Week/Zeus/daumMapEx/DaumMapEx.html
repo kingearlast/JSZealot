@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello, World!</title>
+		<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
+		<style type="text/css">
+			html {
+				height: 100%
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0
+			}
+			#map {
+				width: 100%;
+				height: 100%
+			}
+		</style>
+		<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=458183d1621246435d13faba76ee10919fbcb285
+
+		"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				var position = new daum.maps.LatLng(37.5817557, 127.0103548);
+
+				var map = new daum.maps.Map(document.getElementById('map'), {
+					center : position,
+					level : 4,
+					mapTypeId : daum.maps.MapTypeId.HYBRID
+				});
+
+				var zoomControl = new daum.maps.ZoomControl();
+				map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
+				var mapTypeControl = new daum.maps.MapTypeControl();
+				map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+				var marker = new daum.maps.Marker({
+					position : position
+				});
+				marker.setMap(map);
+
+				daum.maps.event.addListener(marker, "click", function() {
+					var infowindow = new daum.maps.InfoWindow({
+						content : '<p style="margin:5px 5px;font-size:11px">Hansung University!!</p>'
+					});
+					infowindow.open(map, this);
+				});
+			};
+
+		</script>
+	</head>
+	<body>
+		<div id="map"></div>
+	</body>
+</html>
