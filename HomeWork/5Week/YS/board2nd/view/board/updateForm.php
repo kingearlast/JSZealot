@@ -30,8 +30,8 @@ $list = mysql_fetch_array($result);
 			</tr>
 			<tr>
 				<td >
-					<input type="submit" value="수정" />
-					<a id="seq<?= $seq ?>">취소</a>
+					<input type="submit" value="수정" class="button" />
+					<a id="seq<?= $seq ?>" class="button">취소</a>
 <script>
 	$('#seq<?= $seq ?>').on('click', {url: './board/readDetail.php?seq=<?= $seq ?>'}, loadAjax);
 </script>

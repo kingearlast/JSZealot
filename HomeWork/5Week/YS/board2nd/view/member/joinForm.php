@@ -8,7 +8,7 @@
 		<span id="checkPWD" style="color: red;"></span>  <br />
 		<label for="name">name</label> : <input id="name" name="name" type="text" value="" required="required" /> <br />
 		<label for="email">email</label> : <input id="email" name="email" type="email" required="required" /> <br />
-		<input type="submit" value="Join" /> 
+		<input type="submit" value="Join" class="button" /> 
 	</form>
 </div>
 

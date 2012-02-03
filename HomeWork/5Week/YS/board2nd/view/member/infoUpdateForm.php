@@ -20,7 +20,7 @@ $list = mysql_fetch_array($result);
 		<span id="checkPWD" style="color: red;"></span>  <br />
 		<label for="name">name</label> : <input id="name" name="name" type="text" value="<?= $list[name] ?>" required="required" /> <br />
 		<label for="email">email</label> : <input id="email" name="email" type="email" value="<?= $list[email] ?>"required="required" /> <br />
-		<input type="submit" value="Update" /> 
+		<input type="submit" value="Update" class="button" /> 
 	</form>
 </div>
 

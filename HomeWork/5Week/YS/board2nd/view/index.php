@@ -36,16 +36,16 @@ ini_set("display_errors", "1");
 	</head>
 	<body>
 		<div id="wrap">
-			<nav id="menu" style="float: right; background-color: skyblue;">
+			<nav id="menu" style="float: right;">
 					<? if($loginID == "") { ?>
-					<a id="login">login</a>  
-					<a id="join">join</a>
+					<a id="login" class="button">login</a>  
+					<a id="join" class="button">join</a>
 					<? }?>
 					<? if($loginID != "") { ?>
-					<a id="loginID"> <?= $loginID ?>님 </a>
-					<a id="logout" href="../model/member/logout.php">logout</a>
+					<a id="loginID" class="button"> <?= $loginID ?>님 </a>
+					<a id="logout" class="button" href="../model/member/logout.php">logout</a>
 					<? }?>
-					|| <a id="readList">readList</a>
+					|| <a id="readList" class="button">readList</a>
 				</ul>
 			</nav>
 			<header>

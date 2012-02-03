@@ -25,8 +25,8 @@ $result = mysql_query($sql, $connect);
 	</table>
 </div>
 <? if($loginID == $list[member_id]) { ?>
-<span> <a id="seq<?= $list[seq] ?>">수정</a> </span>
-<span> <a href="../model/board/delete.php?seq=<?= $list[seq] ?>">삭제</a> </span>
+<span> <a id="seq<?= $list[seq] ?>" class="button">수정</a> </span>
+<span> <a href="../model/board/delete.php?seq=<?= $list[seq] ?>" class="button">삭제</a> </span>
 <script>
 	$('#seq<?= $list[seq] ?>').on('click', {url: './board/updateForm.php?seq=<?= $list[seq] ?>'}, loadAjax);
 </script>

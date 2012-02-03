@@ -14,8 +14,8 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="submit" value="작성" />
-					<a href="./index.php">취소</a>
+					<input type="submit" value="작성" class="button" />
+					<a href="./index.php" class="button">취소</a>
 				</td>
 			</tr>
 		</table>

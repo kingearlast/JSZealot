@@ -30,7 +30,7 @@ $result = mysql_query($sql, $connect);
 			<? } ?>
 		</table>
 		<? if($loginID != "") { ?>
-		<div> <a id="create">글쓰기</a> </div>
+		<div> <a id="create" class="button">글쓰기</a> </div>
 		<? } ?>
 	</div>
 </div>
