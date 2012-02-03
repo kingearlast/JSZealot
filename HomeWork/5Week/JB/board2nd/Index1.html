@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="focus.js"></script>
+		<title>New Web Project</title>
+	</head>
+	<body>
+			<table border="1" width="400">
+				<tr>
+					<td align="center"><a href="member/joinMember.html"><b><font size="2" face="휴먼엑스포">회원가입</font></b></a></td>
+					<td align="center"><a href="member/searchMemberInformation.html"><b><font size="2"color="grade" face="휴먼엑스포 ">아이디 비밀번호 찾기</font></b></a></td>
+				</tr>
+				<tr>
+					<td align="center">
+					<input type="text" size="32" value="아이디" id="id" />
+					</td>
+					<td align="center">
+					<input type="checkbox" id="rememberId" value="check" />
+					아이디기억</td>
+				</tr>
+				<tr>
+					<td align="center" width="57%"><input size="32"  type="password" id="password"value="비밀번호" /></td>
+					<td align="center">
+					<input type="button" id="login" value="로그인" />
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><a href="board/board.html"><font face="휴먼엑스포" size="5">게시판 go!</font></a></td>
+				</tr>
+			</table>
+	</body>
+</html>
+
+<script>
+	$("input:text").focus(function() {
+		$(this).val("");
+	});
+	$("input:password").focus(function() {
+		$(this).val("");
+	});
+		
+	$('#login').click(function(){
+		var loginInformation = {};
+		loginInformation.id = $('#id').val();
+		loginInformation.password  = $('#password').val();
+		
+		$.ajax({
+				url : "member/login.php",
+				data : loginInformation,
+				dataType : 'script',
+				type : 'GET',
+				success : function(data) {
+					if(data== 'false'){
+						alert("입력하신 정보가 틀립니다. 다시입력해 주시기 바랍니다.");
+					}
+					else{
+						location.href = "Index2.html";
+					}
+				}
+			});
+	});
+	
+
+	
+	
+	
+</script>
