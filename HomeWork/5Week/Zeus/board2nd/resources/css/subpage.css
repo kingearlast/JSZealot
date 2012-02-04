@@ -1,0 +1,386 @@
+#sub_img {
+	width: 971px;
+	height: 179px;
+	background-image: url(../images/AboutMe/sub_back.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+#nav_sub_menu {
+	width: 238px;
+	float: left;
+	margin: 20px;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 1em;
+}
+#nav_sub_menu li {
+	margin: 20px 0 0 10px;
+	list-style: none;
+}
+#nav_sub_menu a {
+	text-decoration: none;
+	color: #666;
+	display: block;
+	height: 15px;
+	width: 150px;
+	padding: 7px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #999999;
+	background-image: url(../images/bullet.gif);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+#nav_sub_menu a:hover {
+	background-image: url(../images/bullet_orange.gif);
+	background-repeat: no-repeat;
+	background-position: right center;
+	color: #F90;
+}
+#article_about_me {
+	float: right;
+	width: 660px;
+	padding-right: 30px;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+}
+#article_about_me h1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 45px;
+	color: #CCC;
+	margin: 20px 0;
+	font-weight: normal;
+}
+#article_about_me p {
+	padding-left: 10px;
+}
+
+#article_contents h1{
+	font-family: "Times New Roman", Times, serif;
+	font-size: 45px;
+	color: #CCC;
+	margin: 20px 0;
+	font-weight: normal;
+}
+#article_contents table#freeBoard {
+	width: 670px;
+	border-collapse: collapse;
+}
+#article_contents table#freeBoard th {
+	text-align: center;
+	height: 20px;
+	text-transform: capitalize;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	padding: 5px;
+	background-repeat: repeat-x;;
+	background-position: center center;
+	background-image: url(../images/center/t_back.jpg);
+	color: #FFF;
+}
+#article_contents table#freeBoard td {
+	text-align: center;
+	padding: 6px 0;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #999;
+}
+#article_contents table#freeBoard td.left {
+	text-align: left;
+}
+
+#article_contents table#freeBoard tr:hover {
+	background-color:#EEFDFF;
+	cursor:pointer;
+}
+
+#article_contents #search_table {
+	margin: 15px 10px 10px 0;
+	float: right;
+}
+
+#buttonWrite {
+	margin: 15px 20px 10px 0;
+		float: right;
+	/*padding: 7px 0 5px 0;*/
+}
+
+#buttonWrite a {
+	display: block;
+	background: url('../images/BtnWrite.gif') left 0;
+	color: #777;
+	padding-left: 6px;
+	text-decoration: none;
+	height: 27px;
+	cursor: pointer;
+	margin-right: 3px;
+	overflow: hidden;
+}
+
+#buttonWrite a:hover{
+	background: url('../images/BtnWrite.gif') left -27px
+}
+
+#buttonWrite a span{
+	display: block;
+	float: left;
+	background: url('../images/BtnWrite.gif') right 0;
+	line-height: 240%;
+	padding-right: 6px;
+	height: 27px;
+	overflow: hidden;
+}
+
+#buttonWrite a:hover span{
+	background: url('../images/BtnWrite.gif') right -27px;
+	color: #000
+}
+
+#ButtonRead {
+	margin: 15px 20px 10px 0;
+	/*float: right;*/
+	padding: 7px 0 5px 0;
+}
+
+#ButtonRead a {
+	display: block;
+	background: url('../images/BtnWrite.gif') left 0;
+	color: #777;
+	padding-left: 6px;
+	text-decoration: none;
+	height: 27px;
+	cursor: pointer;
+	margin-right: 3px;
+	overflow: hidden;
+}
+
+#ButtonRead a:hover{
+	background: url('../images/BtnWrite.gif') left -27px
+}
+
+#ButtonRead a span{
+	display: block;
+	float: left;
+	background: url('../images/BtnWrite.gif') right 0;
+	line-height: 240%;
+	padding-right: 6px;
+	height: 27px;
+	overflow: hidden;
+}
+
+#ButtonRead a:hover span{
+	background: url('../images/BtnWrite.gif') right -27px;
+	color: #000
+}
+
+#sub_img_member{
+	width: 971px;
+	height: 179px;
+	background-image: url(../images/member/sub_back.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+#article_join h1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 45px;
+	color: #CCC;
+	margin: 20px 0;
+	font-weight: normal;
+}
+
+form#join{
+	margin:10px 0 0 0;
+	width:670px;
+	float:right;
+}
+
+form#join fieldset{
+	padding:10px 0 20px 5px;
+	border:none;
+}
+
+form#join fieldset legend{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	border-bottom:1px dotted #666;
+	width:600px;
+	padding: 5px 0;
+}
+
+form#join label{
+	width:140px;
+	float:left;
+	margin:5px 0;
+}
+
+form#join input{
+	margin:5px 0;
+	border: 1px solid #999;
+}
+
+form#join input#userId{
+	background: url('http://localhost/resources/images/status.gif') 104px 0 no-repeat;
+	padding : 0 20px 0 2px;
+	width:100px;
+	height:18px;
+}
+
+form#join input#userId.searching {
+	background-position : 104px -19px;
+}
+
+form#join input#userId.approved {
+	background-position : 104px -35px;
+}
+
+form#join input#userId.denied {
+	background-color : #ff8282;
+	background-position : 104px -52px;
+}
+
+form#join input#password1{
+	background: url('http://localhost/resources/images/status.gif') 154px 0 no-repeat;
+	padding : 0 20px 0 2px;
+	width:150px;
+	height:18px;
+}
+
+form#join input#password1.searching {
+	background-position: 154px -19px;
+}
+
+form#join input#password1.approved {
+	background-position: 154px -35px;
+}
+
+form#join input#password1.denied {
+	background-color: #FF8282; 
+	background-position: 154px -52px;
+}
+
+form#join input#password2{
+	width:154px;
+	height:18px;
+}
+
+form#join input#name{
+	width:150px;
+	height:18px;
+}
+
+form#join input#email{
+	width:150px;
+	height:18px;
+}
+
+form#join #buttons{
+	margin:20px 0 0 0;
+}
+
+form#join #buttons .submit, form#join #buttons .cancel{
+	height:30px;
+	width:150px;
+	border:1px solid #666;
+	font-size:14px;
+}
+
+form#join #buttons .submit{
+	background-image:url(../images/member/submit_back.jpg);
+	background-repeat: repeat-x;
+	background-position:center center;
+	color:#fff;
+}
+
+form#join #buttons .cancel{
+	background-image:url(../images/member/cancel_back.jpg);
+	background-repeat: repeat-x;
+	background-position:center center;
+	
+}
+
+#article_login h1 {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 45px;
+	color: #CCC;
+	margin: 20px 0;
+	font-weight: normal;
+}
+
+form#login{
+	margin:10px 0 0 0;
+	width:670px;
+	float:right;
+}
+
+form#login fieldset{
+	padding:10px 0 20px 5px;
+	border:none;
+}
+
+form#login fieldset legend{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	border-bottom:1px dotted #666;
+	width:600px;
+	padding: 5px 0;
+}
+
+form#login label{
+	width:140px;
+	float:left;
+	margin:5px 0;
+}
+
+form#login input{
+	margin:5px 0;
+	border: 1px solid #999;
+	background-color:#fcfdea;
+}
+
+form#login input.id{
+	width:100px;
+	height:18px;
+}
+
+form#login input.password{
+	width:150px;
+	height:18px;
+}
+
+form#login input.name{
+	width:150px;
+	height:18px;
+}
+
+form#login input.email{
+	width:150px;
+	height:18px;
+}
+
+form#login #buttons{
+	margin:20px 0 0 0;
+}
+
+form#login #buttons .submit, form#login #buttons .cancel{
+	height:30px;
+	width:150px;
+	border:1px solid #666;
+	font-size:14px;
+}
+
+form#login #buttons .submit{
+	background-image:url(../images/member/submit_back.jpg);
+	background-repeat: repeat-x;
+	background-position:center center;
+	color:#fff;
+}
+
+form#login #buttons .cancel{
+	background-image:url(../images/member/cancel_back.jpg);
+	background-repeat: repeat-x;
+	background-position:center center;
+	
+}
