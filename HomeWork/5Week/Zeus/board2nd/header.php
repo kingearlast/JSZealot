@@ -12,7 +12,7 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<!--<script type="text/javascript" src="http://localhost/resources/scripts/joinVali.js"></script>-->
 		<!--<script type="text/javascript" src="http://localhost/resources/scripts/checkForm.js"></script>-->
-		<script type="text/javascript" src="http://localhost/resources/scripts/utils.js"></script>
+		<!--<script type="text/javascript" src="http://localhost/resources/scripts/utils.js"></script>-->
 	</head>
 	<body>
 		<div id="wrap">			

@@ -23,6 +23,7 @@
 		}
 		$_SESSION['nickname'] = $_POST['name'];
 		$_SESSION['id'] = $_POST['id'];
+		$_SESSION['is_login'] = true;
 		
 		header('location: ../../index.php');
 	}
