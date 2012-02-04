@@ -1,0 +1,50 @@
+<form action="/member/join" method="post" id="joinForm">
+	<table class="member" border="1" summary="회원가입테이블">
+		<thead>회원가입</thead>
+		<tbody>
+			<tr>
+				<th>ID : </th>
+				<td><input id="id" name="id" type="text" size="10" maxlength="15" placeholder="ID" autofocus="true" value="<%= member.id %>"/><span class="error"></span></td>
+			</tr>
+			<tr>
+				<th>PASSWORD : </th>
+				<td><input id="password" name="password" type="password" size="10" maxlength="15" placeholder="PASSWORD" value="<%= member.password %>"/></td>
+			</tr>
+			<tr>
+				<th>PASSWORD 재입력 : </th>
+				<td><input id="confirmPassword" name="confirmPassword" type="password" size="10" maxlength="15" placeholder="PASSWORD 재입력" value="<%= member.password %>"/><span class="error"></span></td>
+			</tr>
+			<tr>
+				<th>주민번호 : </th>
+				<td><input id="socialNumber" name="socialNumber" type="text" size="13" maxlength="13" placeholder="-제외하고입력" value="<%= member.socialNumber %>" /><span class="error"></span></td>
+			</tr>
+			<tr>
+				<th>이름 : </th>
+				<td><input id="name" name="name" type="text" size="10" maxlength="15" placeholder="이름" value="<%= member.name %>" /><span class="error"></span></td>
+			</tr>
+			<tr>
+				<th>전화번호 : </th>
+				<td><input id="telNumber" name="telNumber" type="text" size="11" maxlength="11" placeholder="-제외하고입력" value="<%= member.telNumber %>" /><span class="error"></span></td>
+			</tr>
+			<tr>
+				<th>이메일 : </th>
+				<td>
+					<input id="emailId" name="emailId" type="text" size="10" maxlength="15" value="<%= member.emailId %>" />@
+					<input id="emailDomain" name="emailDomain" type="text" size="10" maxlength="15" readonly="readonly" placeholder="선택하세요->"/>
+					<select id="emailDomainSelect" name="emailDomainSelect">
+						<option value="">이메일선택</option>
+						<option value="naver.com"	<%= member.emailDomainSelect == 'naver.com'? 'selected="selected"' : '' %>>네이버</option>
+						<option value="nate.com"	<%= member.emailDomainSelect == 'nate.com'? 'selected="selected"' : '' %>>네이트</option>
+						<option value="hanmail.net"	<%= member.emailDomainSelect == 'hanmail.net'? 'selected="selected"' : '' %>>한메일</option>
+						<option value="gmail.com"	<%= member.emailDomainSelect == 'gmail.com'? 'selected="selected"' : '' %>>G메일</option>
+						<option value="hotmail.com"	<%= member.emailDomainSelect == 'hotmail.com'? 'selected="selected"' : '' %>>핫메일</option>
+						<option value=""			<%= member.emailDomainSelect == ''?'selected="selected"' : '' %>>*직접입력*</option>
+					</select>
+					<span class="error"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="submit" value="완료" />
+</form>
+
