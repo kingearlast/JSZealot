@@ -63,15 +63,7 @@ function bindJoin(){
 				event.preventDefault();
 				if ( !(joinErrorCount > 0) && joinFormEmptyCheck() ){
 					var postURL = this.action;
-					var param = {	id : this.id.value, 
-									password : this.password.value,
-									confirmPassword : this.confirmPassword.value,
-									socialNumber : this.socialNumber.value,
-									name : this.name.value,
-									telNumber : this.telNumber.value,
-									emailId : this.emailId.value,
-									emailDomainSelect : this.emailDomainSelect.value
-								};
+					var param = $(this).serialize();
 					$.post(postURL, param, function(data){
 						$('#content').html(data);
 					});
