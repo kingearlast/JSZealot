@@ -1,0 +1,31 @@
+<div class="login">
+	<form action="/member/login" method="post" id="loginForm">
+		<fieldset>
+			<% if ( session.member ) { %>
+				<span><%= session.member.name %> 님</span>
+				<span><a href="/member/logout">로그아웃</a></span>
+			<% }else { %>
+				<input name="id" type="text" size="10" maxlength="15" placeholder="ID" autofocus="true"/>
+				<input name="saveId" id="saveId" type="checkbox" /><label for="saveId">ID저장</label>
+				<input name="password" type="password" size="10" maxlength="15" placeholder="PASSWORD" />
+				<input type="submit" value="로그인"/>	
+			<% } %>
+		</fieldset>
+	</form>
+</div>
+<div class="">
+	<% if ( session.member ) { %>
+		<a href="/member/update?id=<%= session.member.id %>" id="updateMemberLink">정보수정</a>	
+	<% }else { %>
+		<a href="/member/findId" id="findId">ID찾기</a>
+		<a href="/member/findPassword" id="findPassword">PASSWORD찾기</a><br/>
+		<a href="/member/join" id="join">회원가입</a>
+	<% } %>
+</div>
+<div class="sideMenu">
+	<ul>
+		<li>sideMenu</li>
+		<li>sideMenu</li>
+		<li>sideMenu</li>
+	</ul>
+</div>
