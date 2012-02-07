@@ -4,8 +4,8 @@ function bindLogin(){
 		event.preventDefault();
 		var result = loginFormEmptyCheck(this);
 		if ( result ){
-			var URL = this.action;
-			var param = {id:this.id.value, password:this.password.value};
+			var URL = $(this).attr('action');
+			var param = $(this).serialize();
 			$.post(URL, param, function(data){
 				$('#aSide').html(data);				
 			});
@@ -21,8 +21,8 @@ function bindFindAccount(){
 			$('#content').html(data);
 			$('#findIdForm').submit(function(event){
 				event.preventDefault();
-				var postURL = this.action;
-				var param = {socialNumber : this.socialNumber.value};
+				var postURL = $(this).attr('action');
+				var param = $(this).serialize();
 				$.post(postURL, param, function(data){
 					$('#content').html(data);
 				});
@@ -38,8 +38,8 @@ function bindFindAccount(){
 			$('#content').html(data);
 			$('#findPasswordForm').submit(function(event){
 				event.preventDefault();
-				var postURL = this.action;
-				var param = {id : this.id.value, socialNumber : this.socialNumber.value};
+				var postURL = $(this).attr('action');
+				var param = $(this).serialize();
 				$.post(postURL, param, function(data){
 					$('#content').html(data);
 				});
@@ -62,7 +62,7 @@ function bindJoin(){
 			$('#joinForm').submit(function(event){
 				event.preventDefault();
 				if ( !(joinErrorCount > 0) && joinFormEmptyCheck() ){
-					var postURL = this.action;
+					var postURL = $(this).attr('action');
 					var param = $(this).serialize();
 					$.post(postURL, param, function(data){
 						$('#content').html(data);
