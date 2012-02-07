@@ -10,7 +10,7 @@
 		public $cont;
 	}
 	
-	$sql = "select * from board_cont";
+	$sql = "select * from brd_cont";
 	$result = mysql_query($sql, $connect);
 	
 	$contArray = array();

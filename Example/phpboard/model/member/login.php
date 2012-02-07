@@ -8,7 +8,7 @@
 		die;
 	}
 	
-	$sql = "select count(*) from member_info where id = '$id' and pwd = '$pwd'";
+	$sql = "select count(*) from mb_inf where mb_inf_id = '$id' and mb_inf_pwd = '$pwd'";
 	$result = mysql_query($sql, $connect);
 	$resultSet = mysql_fetch_row($result);
 	$row_num = $resultSet[0];
@@ -19,12 +19,12 @@
 		$_SESSION['loginID'] = $id;
 		echo "<script>
 			      alert('로그인 성공');
-			      location.replace('/board');
+			      location.replace('/phpboard');
 			  </script>";
 	}else {
 		echo "<script>
 			      alert('아이디나 패스워드가 틀립니다.');
-			      //location.replace('/board');
+			      location.replace('/phpboard');
 			  </script>";
 	}
 ?>

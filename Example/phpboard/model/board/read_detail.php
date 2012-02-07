@@ -10,7 +10,7 @@
 		public $cont;
 	}
 	
-	$sql = "select * from board_cont where seq = '$seq'";
+	$sql = "select * from brd_cont where brd_cont_seq = '$seq'";
 	$result = mysql_query($sql, $connect);
 
 	$resultSet = mysql_fetch_row($result);

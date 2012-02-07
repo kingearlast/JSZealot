@@ -7,7 +7,7 @@
 		die;
 	}
 	
-	$sql = "select count(*) from member_info where id = '$id'";
+	$sql = "select count(*) from mb_inf where mb_inf_id = '$id'";
 	$result = mysql_query($sql, $connect);
 	$resultSet = mysql_fetch_row($result);
 	$row_num = $resultSet[0];
