@@ -13,7 +13,6 @@ var db;
 var Member;
 var Board;
 var page = require('./common/page.js');
-var validator = require('./routes/validator.js');
 
 // Configuration
 
@@ -155,6 +154,18 @@ app.post('/member/findPassword', function(req, res){
 	});
 });
 
+app.get('/member/join', function(req, res){
+	var emptyMember = createMemberDoc({});
+	res.local('member', emptyMember);
+	res.local('title', '회원가입');
+	
+	if ( req.xhr ){
+		res.partial('member/join.html');
+	}else {
+		res.render('member/join.html');	
+	}
+});
+
 app.get('/member/idDuplicateCheckForm', function(req, res){
 	res.partial('member/idDuplicateCheckForm.html');
 });
@@ -170,50 +181,19 @@ app.get('/member/idDuplicateCheck', function(req, res){
 	});
 });
 
-app.get('/member/join', function(req, res){
-	var emptyMember = createMemberDoc({});
-	var errors = validator.createErrorsForMember();
-	res.local('member', emptyMember);
-	res.local('errors', errors);
-	res.local('title', '회원가입');
-	
-	if ( req.xhr ){
-		res.partial('member/join.html');
-	}else {
-		res.render('member/join.html');	
-	}
-});
-
 // 회원가입 서브밋 
-app.post('/member/join', validator.joinValidate, function(req, res){
+app.post('/member/join', function(req, res){
 	//clog.info(req.body);
 	var postData = req.body;
-	if ( req.errors.count > 0 ){
-		res.local('errors', req.errors);
-		res.local('member', postData);
-		res.local('title', '회원가입');
-		if ( req.xhr ){
-			res.partial('member/join.html');
-		}else {
-			res.render('member/join.html');	
-		}
-	} 
 	var memberDoc = createMemberDoc(postData);
 	memberDoc.save(function(err){
 		res.local('member', postData);
 		if ( err ){
-			clog.error( err );
-			req.errors.socialNumber = '주민번호가 중복됩니다.';	
-			clog.error('req.errors.socialNumber' + req.errors.socialNumber);
-			res.local('errors', req.errors);
-			clog.error(req.errors);
+			clog.error( err + 'errCode : ' + err.code);
 			res.local('title', '회원가입');
-			if ( req.xhr ){
-				res.partial('member/join.html');
-			}else {
-				res.render('member/join.html');	
-			}
-		}else {
+			res.render('member/joinForm.html');	
+			
+		}else{
 			req.session.member = postData;
 			res.local('title', '회원정보');
 			if ( req.xhr ){
@@ -232,12 +212,11 @@ app.get('/member/update', function(req, res){
 	//var id = req.params.id;  
 	// /member/update/:id 와 같이 path 변수로 들어오는 경우 사용
 	var id = req.query.id;   
+	
 	Member.findOne({id:id}, function(err, member){
 		if ( err ){
 			res.redirect('/');
 		}else {
-			var errors = validator.createErrorsForMember();
-			res.local('errors', errors);
 			res.local('title', '회원정보수정');
 			res.local('member', member);
 			if ( req.xhr ){
@@ -251,20 +230,10 @@ app.get('/member/update', function(req, res){
 	
 });
 
-app.post('/member/update', validator.joinValidate, function(req, res){
+app.post('/member/update', function(req, res){
 	var postData = req.body;
-	if ( req.errors.count > 0 ){
-		res.local('errors', req.errors);
-		res.local('member', postData);
-		res.local('title', '회원정보수정');
-		if ( req.xhr ){
-			res.partial('member/update.html');
-		}else {
-			res.render('member/update.html');	
-		}
-	}
 	var condition = {id:postData.id, password:postData.beforePassword};
-	clog.info(postData);
+	
 	Member.findOne(condition, function(err, member){
 		res.local('member', postData);
 		if ( member ){
@@ -277,15 +246,18 @@ app.post('/member/update', validator.joinValidate, function(req, res){
 										emailDomainSelect : postData.emailDomainSelect	}};
 							
 			Member.update(condition, setValue, null, function(err){
-				res.local('title', '회원정보');
-				if ( req.xhr ){
-					res.partial('member/get.html');
-				}else {
-					res.render('member/get.html');	
+				if ( err ){
+					clog.info( err );
+				}else{
+					res.local('title', '회원정보');
+					if ( req.xhr ){
+						res.partial('member/get.html');
+					}else {
+						res.render('member/get.html');	
+					}
 				}
 			});
 		}else{
-			res.local('errors', req.errors);
 			res.local('title', '회원정보수정');
 			if ( req.xhr ){
 				res.partial('member/update.html');
@@ -415,6 +387,20 @@ app.get('/board/delete', function(req, res){
 	});
 });
 
+function createErrorForMember(id, password, socialNumber, name, telNumber, emailId, emailDomain, emailDomainSelect){
+	var error = {
+		id : id,
+		password : password,
+		socialNumber : socialNumber,
+		name : name,
+		telNumber : telNumber,
+		emailId : emailId,
+		emailDomain : emailDomain,
+		emailDomainSelect : emailDomainSelect		
+	};
+	
+	return error;
+}
 
 function createMemberDoc(params){
 	var memberDoc = new Member();
@@ -441,24 +427,14 @@ function createBoardDoc(params, seq){
 	boardDoc.content = params.content? params.content : '';
 	boardDoc.category = params.category? params.category : '';
 	boardDoc.writerId = params.writerId? params.writerId : '';
-	boardDoc.regDate = createDateTime();
+	boardDoc.regDate = getDateTime();
 	
 	return boardDoc;
 	
 }
 
-function createDateTime(){
-	var now = new Date();
-	
-	var year = now.getFullYear();
-	var month = now.getMonth() + 1;
-	var date = now.getDate();
-	
-	var hours = now.getHours();
-	var minute = now.getMinutes();
-	
-	return year + '/' + month + '/' + date + ' ' + hours + ':' + minute;
-
+function getDateTime(){
+	return new Date().toLocaleDateString() + new Date().toLocaleTimeString();
 }
 
 app.listen(3000);

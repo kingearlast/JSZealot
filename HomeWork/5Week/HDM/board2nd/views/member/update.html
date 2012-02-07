@@ -4,11 +4,11 @@
 		<tbody>
 			<tr>
 				<th>ID : </th>
-				<td><input id="id" name="id" type="text" size="10" maxlength="15" placeholder="ID" readonly="readonly" value="<%= member.id %>"/><span class="error"><%= errors.id %></span></td>
+				<td><input id="id" name="id" type="text" size="10" maxlength="15" placeholder="ID" readonly="readonly" value="<%= member.id %>"/><span class="error"></span></td>
 			</tr>
 			<tr>
 				<th>기존비밀번호 : </th>
-				<td><input id="beforePassword" name="beforePassword" type="password" size="10" maxlength="15" placeholder="기존비밀번호" autofocus="true"/><span class="error"><%= errors.beforePassword %></span></td>
+				<td><input id="beforePassword" name="beforePassword" type="password" size="10" maxlength="15" placeholder="기존비밀번호" autofocus="true"/></td>
 			</tr>
 			<tr>
 				<th>PASSWORD : </th>
@@ -16,19 +16,19 @@
 			</tr>
 			<tr>
 				<th>PASSWORD 재입력 : </th>
-				<td><input id="confirmPassword" name="confirmPassword" type="password" size="10" maxlength="15" placeholder="PASSWORD 재입력" /><span class="error"><%= errors.password %></span></td>
+				<td><input id="confirmPassword" name="confirmPassword" type="password" size="10" maxlength="15" placeholder="PASSWORD 재입력" /><span class="error"></span></td>
 			</tr>
 			<tr>
 				<th>주민번호 : </th>
-				<td><input id="socialNumber" name="socialNumber" type="text" size="13" maxlength="13" placeholder="-제외하고입력" readonly="readonly" value="<%= member.socialNumber %>" /><span class="error"><%= errors.socialNumber %></span></td>
+				<td><input id="socialNumber" name="socialNumber" type="text" size="13" maxlength="13" placeholder="-제외하고입력" value="<%= member.socialNumber %>" /><span class="error"></span></td>
 			</tr>
 			<tr>
 				<th>이름 : </th>
-				<td><input id="name" name="name" type="text" size="10" maxlength="15" placeholder="이름" value="<%= member.name %>" /><span class="error"><%= errors.name %></span></td>
+				<td><input id="name" name="name" type="text" size="10" maxlength="15" placeholder="이름" value="<%= member.name %>" /><span class="error"></span></td>
 			</tr>
 			<tr>
 				<th>전화번호 : </th>
-				<td><input id="telNumber" name="telNumber" type="text" size="11" maxlength="11" placeholder="-제외하고입력" value="<%= member.telNumber %>" /><span class="error"><%= errors.telNumber %></span></td>
+				<td><input id="telNumber" name="telNumber" type="text" size="11" maxlength="11" placeholder="-제외하고입력" value="<%= member.telNumber %>" /><span class="error"></span></td>
 			</tr>
 			<tr>
 				<th>이메일 : </th>
@@ -44,7 +44,7 @@
 						<option value="hotmail.com"	<%= member.emailDomainSelect == 'hotmail.com'? 'selected="selected"' : '' %>>핫메일</option>
 						<option value=""			<%= member.emailDomainSelect == ''?'selected="selected"' : '' %>>*직접입력*</option>
 					</select>
-					<span class="error"><%= errors.emailDomainSelect %></span>
+					<span class="error"></span>
 				</td>
 			</tr>
 		</tbody>
@@ -56,9 +56,21 @@
 	
 	$('#updateMemberForm').submit(function(event){
 		event.preventDefault();
+		console.log( 'joinErrorCount: ' + joinErrorCount);
+		console.log( 'joinFormEmptyCheck(): ' + joinFormEmptyCheck());
 		if ( !(joinErrorCount > 0) && joinFormEmptyCheck() ){
-			var postURL = $(this).attr('action');
-			var param = $(this).serialize();
+			var postURL = this.action;
+			var param = {	id : this.id.value,
+							beforePassword : this.beforePassword.value,
+							password : this.password.value,
+							confirmPassword : this.confirmPassword.value,
+							socialNumber : this.socialNumber.value,
+							name : this.name.value,
+							telNumber : this.telNumber.value,
+							emailId : this.emailId.value,
+							emailDomainSelect : this.emailDomainSelect.value
+						};
+			console.dir( param );
 			$.post(postURL, param, function(data){
 				$('#content').html(data);
 			});
