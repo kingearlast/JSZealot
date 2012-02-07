@@ -1,0 +1,10 @@
+<form action="/board/update" method="post">
+	<fieldset>
+		<input name="seq" type="hidden" value="<%= board.seq %>" />
+		<input name="writerId" type="hidden" value="<%= board.writerId %>"/>
+		<input name="category" type="hidden" value="<%= board.category %>"/>
+		<input name="title" type="text" size="50" maxlength="50" placeholder="글제목을 입력하세요" autofocus="true" value="<%= board.title %>"/>
+		<textarea name="content" cols="35" rows="15" placeholder="글내용을 입력하세요"><%= board.content %></textarea><br/>		
+		<input type="submit" value="확인" />
+	</fieldset>
+</form>
