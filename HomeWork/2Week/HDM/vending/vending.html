@@ -62,7 +62,7 @@
 			</table>	
 		</div>
 		<div class="ad" align="center" >
-			<img src="./image/ad/포카리.jpg" alt="ad"/>
+			<img src="./image/ad/pocari.jpg" alt="ad"/>
 		</div>
 		<div class="moneyModule">
 			<div id="displayArea"><span>돈을 넣어주세요</span></div>
@@ -78,8 +78,10 @@
 	</body>
 </html>
 <script>
+
 	$(document).ready(function(){
-		audioModule.playSound('vending');
+		//audioModule.playSound('vending');
+		imgPreload();
 		initDrinks();
 		initBindBtns();
 		drawVending();
@@ -174,7 +176,7 @@
 	var drinks = [];
 	
 	function initDrinks(){
-		var drinkNames = ['사이다', '환타', '콜라', '게토레이', '커피', '참이슬', '처음처럼', '카스', '하이트', '맥스'];
+		var drinkNames = ['cider', 'hwanta', 'cola', 'geto', 'coffe', 'cham', 'cher', 'cass', 'hite', 'max'];
 		var prices = 	  [800, 	800, 	800, 	800, 	  300,     1100,	1300, 	  1300,   1500,    1500];
 		var quantity = [10,10,10,10,10,10,10,10,10,10];
 		for ( var i = 0; i < 10; i ++ ){
@@ -234,7 +236,7 @@
 	}
 	
 	function drawAd(){
-		var imgSrcList = ['./image/ad/코카콜라.jpg', './image/ad/칠성사이다.jpg', './image/ad/포카리.jpg'];
+		var imgSrcList = ['./image/ad/cola.jpg', './image/ad/cider.jpg', './image/ad/pocari.jpg'];
 		var i = 0;
 		setInterval(function(){
 			var index = i % 3 ;
@@ -266,12 +268,13 @@
 		
 	}
 	
-	(function(){
+	function imgPreload(){
 		var imgSrcList = ['./image/ad/코카콜라.jpg', './image/ad/칠성사이다.jpg', './image/ad/포카리.jpg'];
 		$.preload(imgSrcList);
 		
-		var drinkSrc = './image/drink/drink.jpg';
-		$.preload(drinkSrc);
-	})();
+		var dropDrinkSrc = './image/drink/drink.jpg';
+		$.preload(dropDrinkSrc);	
+	}
+	
 	
 </script>

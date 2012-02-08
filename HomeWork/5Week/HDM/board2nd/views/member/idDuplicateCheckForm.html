@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>ID중복체크</title>
+	<style>
+		.errorMsg{
+			color: red;
+		}
+		.okMsg{
+			color: #0080C0;
+		}
+	</style>
+	<script src="/lib/jquery-1.6.2.js" type="text/javascript"></script>
+</head>
+<body>
+	<input id="id" name="id" type="text" size="15" maxlength="15" placeholder="ID" autofocus="true" /><button id="idDuplicateCheckBtn">ID중복확인</button><br/>
+	<span id="message" class="errorMsg"></span><br/>
+	<button id="applyBtn">ID사용하기</button><br/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var isValid = false;
+		
+		// ID사용 눌렀을경우 다이얼로그 창 닫히고 parentWindow 에 값셋팅
+		$('#applyBtn').click(function(event){
+			event.preventDefault();
+			var parentIdInputElement = dialogArguments;
+			var idValue = $('#id').val();
+			if ( isValid ){
+				$(parentIdInputElement).val(idValue);
+				window.close();	
+			}else{
+				$('#message').text('ID 가 적합하지 않습니다. \n중복체크를 다시하세요.').removeClass('okMsg').addClass('errorMsg');
+			}
+			
+		});	
+		
+		// DB로 중복확인 요청 날림
+		$('#idDuplicateCheckBtn').click(function(){
+			var idValue = $('#id').val();
+			if ( idValue ){
+				var url = '/member/idDuplicateCheck?id=' + idValue;
+				console.log('request url: ' + url); 
+				$.get(url, function(result){
+					console.log('response result : ' + result);
+					isValid = result;
+					if ( isValid ){
+						$('#message').text('사용해도 좋은 ID 입니다.').removeClass('errorMsg').addClass('okMsg');
+					}else{
+						$('#message').text('사용할 수 없는ID입니다.').removeClass('okMsg').addClass('errorMsg');
+					}
+				});
+			}
+		});
+		
+		// id Input 창에 키 입력으로 인한 값이 바뀌면 검증 결과 false 로 초기화
+		$('#id').change(function(){
+			idValid = false;
+		});
+		
+	});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

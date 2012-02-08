@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<h1>New Web Project Page</h1>
+		<button onclick="callAjax()"></button>
+	</body>
+	<script type="text/javascript">
+		var $ = {};
+		
+		$.ajax = function(data) {
+			var request = createRequest();
+			request.onreadystatechange = function(){
+				if(request.readyState == 4) {
+					if(request.status == 200) {
+						data.success(request.responseText);
+					}
+				}	
+			};
+			request.open("GET", data.url, true);
+			request.send(null);
+		}
+		
+		
+		function callAjax() {
+			$.ajax({
+				url : "ajax.php",
+				success : function(data) {
+					console.info(data);
+				}
+			});
+		}
+		
+		
+		function createRequest() {
+			try {
+				request = new XMLHttpRequest();
+			} catch (tryMS) {
+				try {
+					request = new ActiveXObject("Msxml2.XMLHTTP");
+				} catch (otherMS) {
+					try {
+						request = new ActiveXObject("Microsoft.XMLHTTP");
+					} catch (failed) {
+						request = null;
+					}
+				}
+			}
+			return request;
+		}
+	</script>
+</html>
