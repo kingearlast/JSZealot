@@ -1,0 +1,266 @@
+/* css 초기화 */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0; padding: 0; border: 0; outline: 0;
+  font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit;
+  vertical-align: baseline;
+}
+/* remember to define focus styles! */
+:focus { outline: 0; }
+body { line-height: 1; color: black; background: white; font-family: 돋움, Dotum, san-serif;}
+ol, ul { list-style: none; }
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: separate; border-spacing: 0; }
+caption, th, td { text-align: left; font-weight: normal; }
+blockquote:before, blockquote:after, q:before, q:after { content: ""; } 
+blockquote, q { quotes: "" ""; }
+
+/** 공통 */
+h1 {
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px;
+}
+table {
+ 	border-collapse: collapse;
+  	line-height:120%;
+  	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1%;
+}
+
+#header {
+	margin-top: 3%;
+	height: 140px;
+	border-bottom: 4px solid #002851;
+}
+#header h1 {
+	margin-left: auto;
+	margin-right: auto;
+	background: url('../images/logo.png') 0 0 no-repeat;
+	width: 450px;
+	height: 87px;
+	font-size: 0;
+	line-height: 0;
+}
+#header h1 a {
+	display: block;
+	width: 450px;
+	height: 87px;
+}
+
+#side, #content {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+#side #sideMenu {
+	margin-top: 30px;
+	margin-left: 50px;
+}
+#side #sideMenu a {
+	color: #000;
+	text-decoration: none;
+}
+#side #sideMenu a:hover {
+	font-weight: bold;
+}
+
+#content {
+	text-align: center;
+}
+#content .mainImg {
+	width: 550px;
+}
+
+#footer {
+	height: 50px;
+	text-align: center;
+}
+
+/** 로그인 */
+div#login {
+	position: relative;
+	background: url('../images/bg_login.png');
+	font-size: 12px;
+	text-align: left;
+	width: 240px;
+	height: 115px;
+	padding-top: 145px;
+	padding-left: 10px;
+}
+#login label {
+	color: #232d85;
+	font-weight: bold;
+	background: url('../images/login_deco.png') center left no-repeat;
+	text-align: left;
+	padding-left: 10px;
+}
+#login form {
+	margin-bottom: 8px;
+}
+#login input[type=text], #login input[type=password] {
+	margin: 1%;
+	margin-right: 0px;
+	width: 100px;
+}
+#login input[type=text] {
+	margin-left: 15px;
+}
+#login input[type=image] {
+	position: absolute;
+	top: 175px;
+	left: 188px;
+}
+#login a {
+	padding-left: 90px;
+	font-weight: bold;
+	text-align: center;
+}
+#login a:link {
+	text-decoration: none;
+	color: #444444;
+}
+#login a:visited { 
+	text-decoration: none;
+	color: #444444;
+ }
+#login a:active { text-decoration: none; }
+#login a:hover { text-decoration: underline; }
+#login.logOn {
+	height: 100px;
+	padding-top: 160px;
+}
+#login.logOn p {
+	margin-bottom: 20px;
+	text-align: center;
+	color: #002851;
+	font-weight: bold;
+}
+#login.logOn li {
+	text-align: center;
+	margin-bottom: 3px;
+	list-style: none;
+}
+#login.logOn a {
+	padding-left: 0px;
+	font-weight: normal;
+}
+
+
+/** 게시판  목록*/
+table#boardList {
+	color: #002851;
+  	width: 500px;
+}
+#boardList th {
+	text-align: center;
+	font-weight: bold;
+	background-color: #dfefff;
+	padding: 4px;
+}
+#boardList td {
+	text-align: center;
+	border-top: thin solid #d7d7d7;
+	border-bottom: thin solid #d7d7d7;
+	padding: 4px;
+}
+#boardList th.no { width: 40px; }
+#boardList th.title { width: 260px; }
+#boardList th.writer { width: 80px; }
+#boardList th.date { width: 70px; }
+#boardList th.count { width: 50px; }
+#boardList td.title { text-align: left;	padding-left: 8px; }
+/*라인*/
+#boardList td.line {background-color:#9dceff; height:2px; padding:0px;}
+#boardList td.line2 {background-color:#9dceff; height:1px; padding:0px;}
+/*글쓰기버튼*/
+#boardList td.boardWrite{
+	border: none;
+	text-align: right;
+}
+#boardList td.back { border: none; text-align: left; }
+div#search {
+	margin-top: 2%;
+}
+div#search form select {
+	margin-right: 5px;
+}
+
+
+/** 게시판 글쓰기 */
+table#boardWrite {
+  	width: 600px;
+}
+#boardWrite th, #boardWrite td {
+	border: none;
+}
+#boardWrite th {
+	vertical-align: middle;
+	width: 130px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #dfefff;
+	padding: 4px;
+}
+#boardWrite td {
+	text-align: left;
+	padding: 4px;
+}
+#boardWrite td.button { border: none; text-align: center; padding-top: 2%; }
+#boardWrite input[type=text] { width: 430px; }
+#boardWrite textarea { width: 430px; height: 300px;}
+
+/** 게시판 글읽기 */
+table#boardRead {
+	color: #002851;
+	width: 600px;
+}
+#boardRead th {
+	vertical-align: middle;
+	width: 130px;
+	text-align: center;
+	font-weight: bold;
+	background-color: #dfefff;
+	padding: 4px;
+}
+#boardRead td {
+	text-align: left;
+	border-top: thin solid #d7d7d7;
+	border-bottom: thin solid #d7d7d7;
+	padding: 4px;
+}
+#boardRead th.count, #boardRead th.date { width: 70px; }
+#boardRead td.writer { width: 120px; }
+#boardRead td.line {background-color:#9dceff; height:2px; padding:0px;}
+#boardRead td.line2 {background-color:#9dceff; height:1px; padding:0px;}
+#boardRead td.button { border: none; text-align: center; padding-top: 2%;}
+
+
+/** 회원가입 */
+table#join {
+	color: #002851;
+  	width: 500px;
+}
+#join th, #join td {
+	text-align: left;
+	border-top: thin solid #d7d7d7;
+	border-bottom: thin solid #d7d7d7;
+	padding: 4px;
+}
+#join th {
+	font-weight: bold;
+	background-color: #dfefff;
+	padding: 4px;
+}
+#join td.right { width: 350px; }
+#join td.line { background-color:#9dceff; height:2px; padding:0px; }
+#join td.line2 { background-color:#9dceff; height:1px; padding:0px; }
+#join td.button { border: none; text-align: center; padding-top: 2%; }
+#join th label {
+	background: url('../images/join_deco.png') center left no-repeat;
+	margin-left: 5px;
+	padding-left: 10px;
+}
+#join td #confirm.fail { color: red; font-weight: bold; }
+#join td #confirm.success { color: #002851; font-weight: bold; }
+#join td .fail { color: red; }
