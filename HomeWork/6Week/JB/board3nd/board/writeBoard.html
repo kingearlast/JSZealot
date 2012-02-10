@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<title>New Web Project</title>
+	</head>
+	<body>
+		<h1>글 쓰 기</h1>
+		<a href="../index.html">홈으로</a>
+		<table border="1">
+			<tr>
+				<th>제목</th>
+				<td>
+				<input type="text" size="40" id="title"/>
+				</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td><textarea style="resize: none" rows="10" cols="34" id="content"></textarea></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+				<input type="button" id="sumit" value="등록"/>
+				<input type="button" onclick="location:'board.html'" value="취소"/>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+<script type="text/javascript">
+	$('#sumit').click(function() {
+		var boardInformation = {};
+		boardInformation.title = $('#title').val();
+		boardInformation.content = $('#content').val();
+
+		$.ajax({
+			url : "writeBoard.php",
+			data : boardInformation,
+			type : 'POST',
+			dataType : 'html',
+			success : function(data) {
+				//	alert(data);
+
+				if(data == false) {
+					location.href = "board.html?page=1"
+				} 				
+			}
+		})
+	});
+
+
+</script>

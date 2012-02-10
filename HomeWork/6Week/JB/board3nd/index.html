@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+		<title>New Web Project</title>
+	</head>
+	<body>
+			<table align="center" border="1" width="430">
+				<!-- 로그인 되어 있지않을때.  -->
+				<? @session_start();  if($_SESSION['id'] == ""){?>
+				<tr >
+					<td><a href="member/joinMember.html">회원가입</a></td>
+					<td><a href="member/searchMemberInformation.html">아이디 비밀번호 찾기</a></td>
+				</tr>
+				<tr>
+					<td>
+					<input type="text" size="32" value="아이디" id="id" />
+					</td>
+					<td>
+					<input type="checkbox" id="rememberId" value="check" />
+					아이디기억</td>
+				</tr>
+				<tr>
+					<td width="57%"><input size="32"  type="password" id="password"value="비밀번호" /></td>
+					<td>
+					<input type="button" id="login" value="로그인" />
+				</tr>
+				<? }?>
+				
+				<!-- 로그인 되어 있을때 -->
+				<? if($_SESSION['id'] != ""){?>
+				<tr>
+				<td width="57%"><? echo $_SESSION['nickName']; ?>님 환영합니다.	</td>
+				<td><a href="member/updateMemberInformation.html">정보수정</a><br />
+					<input onclick="location='member/logOut.php'" type="button" value="로 그 아 웃" />
+				</td>
+				</tr>
+				<? }?>
+				<!--  공톡적인거	 -->
+				<tr>
+					<td colspan="2"><a href="board/board.html?page=1">게시판 go!</a></td>
+				</tr>
+			</table>
+	</body>
+</html>
+<script type="text/javascript">
+	$('#login').click(function(){
+		var loginInformation = {};
+		loginInformation.id = $('#id').val();
+		loginInformation.password  = $('#password').val();
+		$.ajax({
+				url : "member/login.php",
+				data : loginInformation,
+				dataType : 'text',
+				success : function(data) {
+					if(data ==false){
+						location='./index.html';
+					}
+					else {
+						alert("다시입력바랍니다");
+					}	
+				}
+			});
+	});
+	
+</script>
+
+

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;" charset="utf-8" />
+		<script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+		<title>회원가입</title>
+	</head>
+	<body>
+		<h1 >회      원    가    입</h1>
+		<a href="../index.html">홈으로</a>
+		<form action="join.php" method="post">
+			<table border="1">
+				<tr>
+					<th colspan="2" align="center">기    본    정    보</th>
+				</tr>
+				<tr>
+					<td>아이디 <font color="red">*</font></td>
+					<td>
+					<input type="text" name="id" id="id" />
+					<span> </span></td>
+				</tr>
+				<tr>
+					<td>비밀번호 <font color="red">*</font></td>
+					<td>
+					<input type="text" name="password" id="password" />
+					<span> </span></td>
+				</tr>
+				<tr>
+					<td>비밀번호 확인<font color="red">*</font></td>
+					<td>
+					<input type="text" id="passwordCheck" />
+					<span> </span></td>
+				</tr>
+				<tr>
+					<td>이름 <font color="red">*</font></td>
+					<td>
+					<input type="text" name="name" id="name" />
+					<span> </span></td>
+				</tr>
+				<tr>
+					<td>닉네임 <font color="red">*</font></td>
+					<td>
+					<input type="text" name="nickName" id="nickName" />
+					<span> </span></td>
+				</tr>
+				<tr>
+					<td>이메일 주소 <font color="red">*</font></td>
+					<td>
+					<input type="text" name="email1" id="email" />
+					@
+					<select name="email2">
+						<option value="naver.com">naver.com</option>
+						<option value="gmail.com">gmail.com</option>
+						<option value="hanmail.net">hanmail.net</option>
+					</select><span> </span></td>
+				</tr>
+				<tr>
+					<td>전화번호 </td>
+					<td>
+					<select name="phone1">
+						<option value="010">010</option>
+						<option value="011">011</option>
+						<option value="019">019</option>
+					</select> -
+					<input type="text" size="4" maxlength="4" name="phone2"/>
+					-
+					<input type="text" size="4" maxlength="4" name="phone3"/>
+					<span> </span></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right">
+					<input type="submit" id="submit"  value="등록"/>
+					<input type="reset" value="재입력" />
+					<input type="button" value="취소" onclick="location='../index.html'" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">
+	$('#id').change(function() {
+		var member = {};
+		member.id = $('#id').val();
+		$.ajax({
+			url : "checkId.php",
+			data : member,
+			type : "post",
+			dataType : 'html',
+			success : function(data) {
+				if(data == false) {
+					$('#id').next('span').html("중복되는 아이디가 있습니다");
+				} else {
+					$('#id').next('span').html("");
+				}
+			}
+		});
+	});
+	$('#passwordCheck,#password').change(function() {
+		var password = $('#password').val();
+		var passwordCheck = $('#passwordCheck').val();
+
+		if(password != passwordCheck) {
+			$('#passwordCheck').next('span').html("비밀번호와 일치하지 않습니다");
+		} else {
+			$('#passwordCheck').next('span').html("");
+		}
+	});
+	$('#nickName').change(function() {
+		var nickName = $('#nickName').val();
+		if(nickName.length < 2) {
+			$('#nickName').next('span').html("2글자 이상 입력하세요");
+		} else {
+			$('#nickName').next('span').html("");
+		}
+	});
+
+</script>
