@@ -11,9 +11,16 @@
 		<tr>
 			<td><a><?= $contArray[$j]->index ?></a></td>
 			<td><a><?= $contArray[$j]->writer ?></a></td>
-			<td><a href="/board/view/board/detail.php?seq=<?=$contArray[$j]->index?>"><?= $contArray[$j]->title ?></a></td>
+			<td><a href="/phpboard/view/board/detail.php?seq=<?=$contArray[$j]->index?>"><?= $contArray[$j]->title ?></a></td>
 		</tr>
 		<? } ?>
+		<tr>
+			<td colspan="3" id="pagingTD">
+				<? for($z = 0; $z < $pageCount; $z++) { ?>
+					<a href="#"><?=$z+1?></a>
+				<? } ?>
+			</td>
+		</tr>
 	</table>
 	<? if($loginID != "") { ?>
 	<input type="button" value="글쓰기" id="writeLinkBtn" />

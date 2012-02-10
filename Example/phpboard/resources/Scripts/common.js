@@ -10,9 +10,17 @@ function loadJosinForm() {
 	});
 }
 
-function loadBoardList() {
-	$('#contWrap').load("view/board/list.php", function(){
+function loadPagedBoardList() {
+	// alert('Load Paged Board List');
+	var page = +$(this).text();
+	loadBoardList(page);
+}
+
+function loadBoardList(page) {
+	page = page || 1;
+	$('#contWrap').load("view/board/list.php?page="+page, function(){
 		$('#writeLinkBtn').click(loadWriteForm);
+		$('#pagingTD').delegate('a', 'click', loadPagedBoardList);
 	});
 }
 

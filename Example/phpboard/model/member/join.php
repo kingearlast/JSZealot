@@ -3,38 +3,31 @@
 	@extract($_POST);
 	
     include_once '../../common/connect_db.php';
+	include_once '../../common/util.php';
 	
 	if($id == "" || $pwd == "" || $name == "") {
-		echo "<script>alert('입력 에러')</script>";
-		die;
+		page_alert_and_redirect('입력 에러', '/phpboard');
 	}
 	
 	$sql = "select count(*) from mb_inf where mb_inf_id = '$id'";
 	$result = mysql_query($sql, $connect);
 	$resultSet = mysql_fetch_row($result);
-	$row_num = $resultSet[0];
+	$rowNum = $resultSet[0];
 	
-	if($row_num > 0) {
-		echo "join.IDError";
-		die;
+	if($rowNum > 0) {
+		page_alert_and_redirect('중복된 ID 가 있습니다.', '/phpboard');
 	}
 	
 	$sql = "insert into mb_inf(mb_inf_id, mb_inf_nm, mb_inf_pwd)";
 	$sql .= " values('$id', '$name', '$pwd')";
 	$result = mysql_query($sql, $connect);
-	$total_row = mysql_affected_rows();
+	$totalRow = mysql_affected_rows();
 	mysql_close();
 	
-	if($total_row > 0) {
+	if($totalRow > 0) {
 		$_SESSION['loginID'] = $id;
-		echo "<script>
-			      alert('로그인 성공');
-			      location.replace('/phpboard');
-			  </script>";
+		page_redirect('/phpboard');
 	}else{
-		echo $sql;	
-		echo "<script>
-			      alert('가입 실패');
-			  </script>";
+		page_alert_and_redirect('SQL 에러 $sql 회원가입 실패', '/phpboard');
 	}
 ?>

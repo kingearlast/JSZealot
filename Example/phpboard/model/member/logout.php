@@ -1,8 +1,7 @@
 <?php
 	session_start();
+	include_once '../../common/util.php';
+	
 	$_SESSION['loginID'] = "";
-		echo "<script>
-			      alert('로그 아웃');
-			      location.replace('/phpboard');
-			  </script>";
+	page_redirect('/phpboard');	  
 ?>

@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<div class="headerWrap wrap">
-			<h1>Smart Contatcs</h1>
+			<h1>PHP Board</h1>
 		</div>
 		<div class="bodyWrap wrap">
 			<div class="naviWrap wrap">				
