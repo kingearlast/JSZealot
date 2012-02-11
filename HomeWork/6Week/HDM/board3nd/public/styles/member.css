@@ -1,0 +1,16 @@
+.member thead{
+	display: none;
+}
+
+.member th{
+	text-align: left;
+}
+
+.member .submit{
+	text-align: center;
+}
+
+.error{
+	font-size: 11px;
+	color: red;
+}
