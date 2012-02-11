@@ -312,6 +312,52 @@ app.get('/member/delete', function(req, res){
 //////////////////////
 // Board
 //////////////////////
+app.get('/board/search', function(req, res){
+	var pageIndex = req.query.pageIndex || 1;
+	var skipResult = page.getSkipResult(pageIndex, page.DEFAULT_PAGE_SIZE);
+	var searchCategory = req.query.searchCategory;
+	var searchKeyword = req.query.searchKeyword;
+	
+	var countQuery = Board.count();//
+	var conditionList = [{}];
+	
+	if ( searchKeyword ){ 
+		var likeKeyword = new RegExp(searchKeyword, 'g');
+		
+		if ( searchCategory == 'all'){
+			conditionList = [];
+			conditionList.push({'title': likeKeyword});
+			conditionList.push({'content': likeKeyword});
+			conditionList.push({'writerId': likeKeyword});
+		}else { // title or content or writerId
+			var condition = {};
+			condition[searchCategory] = likeKeyword;
+			conditionList = [];
+			conditionList.push(condition);
+		}
+		clog.info('conditionList:' + conditionList);	
+	}
+	countQuery = countQuery.$or(conditionList);
+	
+	countQuery.run(function(err, totalCnt){
+		if ( err ){
+			clog.error( err );
+		}
+		clog.info('totalCnt :' + totalCnt);
+		Board.find().or(conditionList).skip(skipResult).limit(page.DEFAULT_PAGE_SIZE).run(function(err, boardList){
+			if ( err ){
+				clog.error( err );
+			}
+			res.local('title', '게시판 리스트');
+			boardList = page.makePagedList(boardList, totalCnt, pageIndex);
+			res.local('boardList', boardList);
+			res.local('searchCategory', searchCategory);
+			res.local('searchKeyword', searchKeyword);
+			res.render('board/search.html');
+		});
+	});
+});
+
 app.get('/board/list', function(req, res){
 	var pageIndex = req.query.pageIndex || 1;
 	var skipResult = page.getSkipResult(pageIndex, page.DEFAULT_PAGE_SIZE);
@@ -324,7 +370,6 @@ app.get('/board/list', function(req, res){
 			res.render('board/list.html');
 		});
 	});
-	
 });
 
 
@@ -358,7 +403,6 @@ app.post('/board/save', function(req, res){
 				});
 			}
 		});
-	
 	});
 	
 });

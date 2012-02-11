@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	bindLogin();
+	//bindLogin();
 	bindFindAccount();
 	bindJoin();
 	bindUpdateMemberLink();
