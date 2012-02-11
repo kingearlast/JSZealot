@@ -18,42 +18,42 @@
 					<td>아이디 <font color="red">*</font></td>
 					<td>
 					<input type="text" name="id" id="id" />
-					<span> </span></td>
+					<span></span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 <font color="red">*</font></td>
 					<td>
 					<input type="text" name="password" id="password" />
-					<span> </span></td>
+					<span></span></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인<font color="red">*</font></td>
 					<td>
 					<input type="text" id="passwordCheck" />
-					<span> </span></td>
+					<span></span></td>
 				</tr>
 				<tr>
 					<td>이름 <font color="red">*</font></td>
 					<td>
 					<input type="text" name="name" id="name" />
-					<span> </span></td>
+					<span></span></td>
 				</tr>
 				<tr>
 					<td>닉네임 <font color="red">*</font></td>
 					<td>
 					<input type="text" name="nickName" id="nickName" />
-					<span> </span></td>
+					<span></span></td>
 				</tr>
 				<tr>
 					<td>이메일 주소 <font color="red">*</font></td>
 					<td>
-					<input type="text" name="email1" id="email" />
+					<input type="text" name="email1" id="email1" />
 					@
 					<select name="email2">
 						<option value="naver.com">naver.com</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="hanmail.net">hanmail.net</option>
-					</select><span> </span></td>
+					</select><span></span></td>
 				</tr>
 				<tr>
 					<td>전화번호 </td>
@@ -63,14 +63,14 @@
 						<option value="011">011</option>
 						<option value="019">019</option>
 					</select> -
-					<input type="text" size="4" maxlength="4" name="phone2"/>
+					<input type="text" size="4" maxlength="4" name="phone2" id="phone2"/>
 					-
-					<input type="text" size="4" maxlength="4" name="phone3"/>
-					<span> </span></td>
+					<input type="text" size="4" maxlength="4" name="phone3"id="phone3"/>
+					<span></span></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">
-					<input type="submit" id="submit"  value="등록"/>
+					<input type="submit" disabled id="submit"  value="등록"/>
 					<input type="reset" value="재입력" />
 					<input type="button" value="취소" onclick="location='../index.html'" />
 					</td>
@@ -114,6 +114,40 @@
 		} else {
 			$('#nickName').next('span').html("");
 		}
+	});
+	
+	$('input').change(function(){
+		
+		if($('#id').val() =="" ||$('#id').next('span').html()!=""){
+		$('#submit').attr({disabled:"ture"});
+
+		}
+		else if($('#password').val() =="" ||$('#password').next('span').html()!=""){
+		$('#submit').attr({disabled:"ture"});
+		}
+		else if($('#passwordCheck').val() ==""||$('#passwordCheck').next('span').html() != ""){
+	$('#submit').attr({disabled:"ture"});
+		}
+		else if($('#name').val() ==""||$('#name').next('span').html() != ""){
+		$('#submit').attr({disabled:"ture"});
+		}
+		else if($('#nickName').val() ==""||$('#nickName').next('span').html() != ""){
+		$('#submit').attr({disabled:"ture"});
+		}
+		else if($('#email1').val() ==""){
+		$('#submit').attr({disabled:"ture"});
+		}
+		else if($('#phone2').val() ==""){
+		$('#submit').attr({disabled:"ture"});
+		}
+		else if($('#phone3').val() ==""){
+		$('#submit').attr({disabled:"ture"});
+		}
+		else {
+			$('#submit').removeAttr('disabled');
+		}
+		
+			
 	});
 
 </script>
