@@ -7,33 +7,30 @@
 .title1{
 	text-align: center;
 }
+
 .drink{
-	width: 100%;
 	text-align: center;
-	font-weight: bold;
-	margin: auto;
 }
-.drink table{
-	margin: auto;
-	border: black 1px solid;
+
+.drink > div{
+	text-align: center;
+	display: inline-block;
+	margin-top: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
-.drink table td{
-	width: 70px;
-	border: black 1px solid;
-}
-.drinkImg{
-	display: block;
-	height: 35px;
-	margin: 2.5px;
-	padding: 1px;
-}
+
 .price{
+	display: block;
 	font-size: 12px;
+	margin-top: 5px;
 	font-style: italic;
 }
+
 button{
 	cursor: pointer;
 }
+
 .drinkBtn{
 	display:block;  
 	width: 60px;
@@ -45,44 +42,49 @@ button{
 	font-size:12px; 
 	color:#C18B8D; 
 }
+
+
+.vending-body{
+	margin-top: 20px;
+	background: #68774A;
+}
+
 .ad{
-	width: 250px;
-	height: 150px;
-	border: black 1px inset;
-	background: #68774A;
-	margin: auto;
-	float: left;
+	margin-left: 0px;
+	display: inline-block;
 }
-.ad > img{
-	width: 95%;
-	height: 95%;
-	opacity: 1;
-	float: none;
-	position:relative;
-	top:5px;
-}
+
 .moneyModule{
-	width: 150px;
-	height: 150px;
-	border: black 1px inset;
-	background: #68774A;
+	margin-left: 0px;
+	display: inline-block;
+	position: relative;
+	bottom: 80px;
+}
+
+#displayArea{
+	margin-left: 10px;
+	border:2px dashed red;
+	outline:3px solid black;
+	outline-offset:3px;
+	text-shadow: 2px 2px 2px red;
+	color: red;
+}
+
+.moneyModule button{
+	border-radius: 10px;
 	margin: auto;
-	float: left;
+	position: relative;
+	top:20px;
+	text-align: center;
+	margin: 10px 5px 10px 5px;
 }
+
 .take{
-	width: 250px;
+	width: 60%;
 	height: 150px;
-	border: black 1px inset;
-	background: #68774A;
-	float: left;
+	display: inline-block;
 }
-.returnMoney{
-	width: 150px;
-	height: 150px;
-	border: black 1px inset;
-	background-color: #68774A;
-	float: left;
-}
+
 .dropDrinkZone { 
 	width: 85%; 
 	height: 30%;
@@ -97,31 +99,22 @@ button{
 	top: 80px;
 	cursor: pointer;
 }
+
 .dropDrinkZone:hover{
 	opacity: 0.8;
 	background-color: #FFFFFF;
 }
+
 .dropDrinkZone > img{
 	position: relative;
 	margin: auto;
 }
-#displayArea{
-	margin:auto;
-	width:90%;
-	border:2px dashed red;
-	outline:3px solid black;
-	outline-offset:3px;
-	text-shadow: 2px 2px 2px red;
-	color: red;
+
+.returnMoney{
+	height: 150px;
+	display: inline-block;
 }
-.moneyModule button{
-	border-radius: 10px;
-	margin: auto;
-	position: relative;
-	top:20px;
-	text-align: center;
-	margin: 10px 5px 10px 5px;
-}
+
 #returnMoneyBox{
 	position:relative;
 	top:70px;
@@ -137,3 +130,4 @@ button{
 	border-top-style: dashed;
 	border-color: #FFFFFF;
 }
+
