@@ -15,43 +15,43 @@
 		</div>
 		<div class="drink">
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 			<div>
-				<img class="drinkImg" src="./logo.png" /><span class="price">0 원</span>
+				<img class="drinkImg" src="./image/logo.png" /><span class="price">0 원</span>
 				<button class="drinkBtn"><span>O 선택</span></button>
 			</div>
 		</div>
@@ -229,7 +229,7 @@
 			var audio = $('audio').attr('src', src).get(0);
 			audio.play();
 		}
-	}
+	};
 	
 	function drawAd(){
 		var imgSrcList = ['./image/ad/cola.jpg', './image/ad/cider.jpg', './image/ad/pocari.jpg'];
@@ -249,23 +249,25 @@
 	}
 	
 	function drawDropDrink(){
-		var dropDrinkCount = $('.dropDrinkZone >img').length;
+		var dropDrinkCount = $('.dropDrinkZone > img').length;
 		if ( dropDrinkCount < 4 ){
 			var dropDrink = createDropDrink();
+			//debugger;
 			$('.dropDrinkZone').append(dropDrink);
+			
 			dropDrink.animate({
-		    //opacity: 0.5,
-		    top: 20,
-		    //height: 'toggle'
-		  }, 2000, function() {
+		    		//opacity: 0.5,
+		    		top: 20,
+		    		//height: 'toggle'
+		  		}, 2000, function() {
 		    // Animation complete.
-		  });
+		  	});
 		} 
 		
 	}
 	
 	function imgPreload(){
-		var imgSrcList = ['./image/ad/코카콜라.jpg', './image/ad/칠성사이다.jpg', './image/ad/포카리.jpg'];
+		var imgSrcList = ['./image/ad/cola.jpg', './image/ad/cider.jpg', './image/ad/pocari.jpg'];
 		$.preload(imgSrcList);
 		
 		var dropDrinkSrc = './image/drink/drink.jpg';

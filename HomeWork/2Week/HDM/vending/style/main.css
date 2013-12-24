@@ -82,7 +82,8 @@ button{
 .take{
 	width: 60%;
 	height: 150px;
-	display: inline-block;
+	display: block;
+	float: left;
 }
 
 .dropDrinkZone { 
@@ -107,7 +108,6 @@ button{
 
 .dropDrinkZone > img{
 	position: relative;
-	margin: auto;
 }
 
 .returnMoney{
@@ -129,5 +129,6 @@ button{
 	border-width: 3px;
 	border-top-style: dashed;
 	border-color: #FFFFFF;
+	cursor: pointer;
 }
 
